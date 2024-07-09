@@ -2,7 +2,7 @@
 
 include(CMakeFindDependencyMacro)
 if(@RAIIGRAPH_FIND_IGRAPH@)
-    find_dependency(igraph CONFIG REQUIRED)
+    find_dependency(igraph 0.10.0 CONFIG REQUIRED)
 endif()
 
 include("${CMAKE_CURRENT_LIST_DIR}/ltla_raiigraphTargets.cmake")

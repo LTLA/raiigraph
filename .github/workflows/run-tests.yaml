@@ -36,11 +36,26 @@ jobs:
       run: |
         brew install igraph
 
-    - name: Install igraph on Ubuntu 
+    - name: Cache installed igraph
+      id: cache-igraph
       if: ${{ matrix.config.os == 'ubuntu-latest' }}
+      uses: actions/cache@v4
+      with:
+        path: _deps
+        key: libigraph
+
+    - name: Make and install igraph
+      if: ${{ matrix.config.os == 'ubuntu-latest' && steps.cache-igraph.outputs.cache-hit != true }}
       run: |
-        sudo apt-get update
-        sudo apt-get install libigraph-dev
+        version=0.10.13
+        path=$(pwd)
+        wget https://github.com/igraph/igraph/releases/download/${version}/igraph-${version}.tar.gz
+        tar -xf igraph-${version}.tar.gz
+        cd igraph-${version}
+        mkdir build && cd build
+        cmake .. -DCMAKE_INSTALL_PREFIX=${path}/_deps
+        cmake --build .
+        sudo cmake --install .
 
     - name: Configure the build
       if: ${{ matrix.config.cov == false }}
@@ -48,7 +63,7 @@ jobs:
 
     - name: Configure the build with coverage
       if: ${{ matrix.config.cov == true }}
-      run: cmake -S . -B build -DCODE_COVERAGE=ON
+      run: cmake -S . -B build -DCODE_COVERAGE=ON -DCMAKE_PREFIX_PATH=_deps
 
     - name: Run the build
       run: cmake --build build
