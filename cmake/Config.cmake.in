@@ -5,4 +5,4 @@ if(@RAIIGRAPH_FIND_IGRAPH@)
     find_dependency(igraph CONFIG REQUIRED)
 endif()
 
-include("${CMAKE_CURRENT_LIST_DIR}/raiigraph_raiigraphTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/ltla_raiigraphTargets.cmake")

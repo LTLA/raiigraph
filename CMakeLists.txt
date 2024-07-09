@@ -47,18 +47,18 @@ install(TARGETS raiigraph
     EXPORT raiigraphTargets)
 
 install(EXPORT raiigraphTargets
-    FILE raiigraph_raiigraphTargets.cmake
+    FILE ltla_raiigraphTargets.cmake
     NAMESPACE ltla::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/raiigraph_raiigraph)
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ltla_raiigraph)
 
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Config.cmake.in
-    "${CMAKE_CURRENT_BINARY_DIR}/raiigraph_raiigraphConfig.cmake"
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/raiigraph_raiigraph)
+    "${CMAKE_CURRENT_BINARY_DIR}/ltla_raiigraphConfig.cmake"
+    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ltla_raiigraph)
 
 write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/raiigraph_raiigraphConfigVersion.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ltla_raiigraphConfigVersion.cmake"
     COMPATIBILITY SameMajorVersion)
 
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/raiigraph_raiigraphConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/raiigraph_raiigraphConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/raiigraph_raiigraph)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ltla_raiigraphConfig.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/ltla_raiigraphConfigVersion.cmake"
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/ltla_raiigraph)
