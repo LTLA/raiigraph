@@ -1,5 +1,9 @@
 # C++ RAII for igraph data structures
 
+![Unit tests](https://github.com/LTLA/raiigraph/actions/workflows/run-tests.yaml/badge.svg)
+![Documentation](https://github.com/LTLA/raiigraph/actions/workflows/doxygenate.yaml/badge.svg)
+[![Codecov](https://codecov.io/gh/LTLA/raiigraph/graph/badge.svg?token=qiFzL0PTBw)](https://codecov.io/gh/LTLA/raiigraph)
+
 ## Overview 
 
 This library provides some RAII wrappers around the data structures used by the [**igraph** C library](https://igraph.org).
