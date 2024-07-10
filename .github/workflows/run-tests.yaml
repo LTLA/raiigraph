@@ -45,7 +45,7 @@ jobs:
         key: libigraph
 
     - name: Make and install igraph
-      if: ${{ matrix.config.os == 'ubuntu-latest' && steps.cache-igraph.outputs.cache-hit != true }}
+      if: ${{ matrix.config.os == 'ubuntu-latest' && steps.cache-igraph.outputs.cache-hit != 'true' }}
       run: |
         version=0.10.13
         path=$(pwd)
