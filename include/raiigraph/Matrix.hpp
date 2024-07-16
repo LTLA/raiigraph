@@ -228,7 +228,7 @@ public:
      * @param i Index on the matrix.
      * @return Reference to the value at `i`.
      */
-    reference operator[](igraph_integer_t i) {
+    reference operator[](size_type i) {
         return *(begin() + i);
     }
 
@@ -236,8 +236,42 @@ public:
      * @param i Index on the matrix.
      * @return Const reference to the value at `i`.
      */
-    const_reference operator[](igraph_integer_t i) const {
+    const_reference operator[](size_type i) const {
         return *(begin() + i);
+    }
+
+    /**
+     * @param i Index on the matrix.
+     * @return Reference to the value at `i`.
+     */
+    reference operator[](size_type i) {
+        return *(begin() + i);
+    }
+
+    /**
+     * @param i Index on the matrix.
+     * @return Const reference to the value at `i`.
+     */
+    const_reference operator[](size_type i) const {
+        return *(begin() + i);
+    }
+
+    /**
+     * @param r Row of interest.
+     * @param c Column of interest.
+     * @return Reference to the value at `(r, c)`.
+     */
+    reference operator()(size_type r, size_type c) {
+        return *(begin() + r + c * my_matrix.nrow); // no need to worry about overflow as size_type is guaranteed to hold the full size.
+    }
+
+    /**
+     * @param r Row of interest.
+     * @param c Column of interest.
+     * @return Const reference to the value at `(r, c)`.
+     */
+    const_reference operator[](size_type r, size_type c) const {
+        return *(begin() + r + c * my_matrix.nrow);
     }
 
     /**
@@ -371,14 +405,16 @@ public:
     /**
      * @brief A `Vector`-like view into a row/column of the matrix.
      */
-    class View {
+    template<typename BaseIterator, typename BaseReference>
+    class BaseView {
     /**
      * @cond
      */
     public:
-        View(MatrixIterator start, size_type step, size_type length) : start(start), step(step), length(length) {}
+        BaseView(BaseIterator start, size_type step, size_type length) : start(start), step(step), length(length) {}
+
     private:
-        iterator start;
+        BaseIterator start;
         size_type jump, length;
     /**
      * @endcond
@@ -388,7 +424,7 @@ public:
         /**
          * @return Whether the row vector is empty.
          */
-        igraph_bool_t empty() const {
+        bool empty() const {
             return ncol == 0;
         }
 
@@ -403,21 +439,21 @@ public:
          * @param i Index on the row vector (i.e., the column).
          * @return Reference to the value at `i`.
          */
-        reference operator[](size_type i) {
+        BaseReference operator[](size_type i) const {
             return *(start + i * jump); // no need to cast to avoid overflow, as size_type determines the max size anyway.
         }
 
         /**
          * @return Reference to the last element in the row vector.
          */
-        reference back() {
+        BaseReference back() const {
             return (*this)[length - 1];
         }
 
         /**
          * @return Reference to the first element in the row vector.
          */
-        reference front() {
+        BaseReference front() const {
             return *start;
         }
 
@@ -430,10 +466,13 @@ public:
             iterator start;
             size_type step = 0;
 
-            // Note that we don't just shift 'start' directly as we might end
-            // up shifting it to an address beyond the one-past-the-end of the
-            // array, which does not have any undefined behavior. We store the
-            // offset instead so that an invalid address is never constructed. 
+            // Note that we don't just shift 'start' directly as defining the
+            // 'end()' iterator of the view could up shifting 'start' to an
+            // address beyond the one-past-the-end of the backing array in the
+            // 'igraph_matrix_t'. Pointer arithmetic beyond the array bounds is
+            // undefined IIRC, so instead, we store the offset and att it to
+            // 'start' upon dereference of the iterator. This ensures that an
+            // invalid address is never constructed even if it is unused.
             size_type offset = 0; 
         public:
             /**
@@ -442,7 +481,8 @@ public:
             // List of required methods taken from https://cplusplus.com/reference/iterator/RandomAccessIterator/.
             using iterator_category = std::random_access_iterator_tag;
 
-            explicit Iterator(iterator start, size_type step) : start(std::move(start)), step(step) {}
+            explicit Iterator(iterator start, size_type step, size_type position) : 
+                start(std::move(start)), step(step), offset(position * step) {}
 
             Iterator() = default;
 
@@ -474,11 +514,11 @@ public:
             }
 
         public:
-            reference operator*() const {
+            BaseReference operator*() const {
                 return *(start + offset);
             }
 
-            reference operator[](size_type i) const {
+            BaseReference operator[](size_type i) const {
                 return *(start + offset + step * i);
             }
 
@@ -532,9 +572,9 @@ public:
                 return copy;
             }
 
-            std::ptrdiff_t operator-(const Iterator& other) const {
+            difference_type operator-(const Iterator& other) const {
                 if (other.offset > offset) {
-                    std::ptrdiff_t delta = (other.offset - offset) / step;
+                    difference_type delta = (other.offset - offset) / step;
                     return -delta;
                 } else {
                     return (offset - other.offset) / step;
@@ -548,84 +588,56 @@ public:
         /**
          * @return Iterator to the start of this row vector.
          */
-        iterator begin() {
-            return my_row vector.stor_begin;
+        Iterator begin() const {
+            return Iterator(start, jump, 0);
         }
 
         /**
          * @return Iterator to the end of this row vector.
          */
-        iterator end() {
-            return my_row vector.end;
+        Iterator end() const {
+            return Iterator(start, jump, length);
         }
 
         /**
          * @return Const iterator to the start of this row vector.
          */
-        const_iterator begin() const {
-            return cbegin();
+        Iterator cbegin() const {
+            return begin();
         }
 
         /**
          * @return Const iterator to the end of this row vector.
          */
-        const_iterator end() const {
-            return cend();
-        }
-
-        /**
-         * @return Const iterator to the start of this row vector.
-         */
-        const_iterator cbegin() const {
-            return my_row vector.stor_begin;
-        }
-
-        /**
-         * @return Const iterator to the end of this row vector.
-         */
-        const_iterator cend() const {
-            return my_row vector.end;
-        }
-
-        /**
-         * @return Reverse iterator to the last element of this row vector.
-         */
-        reverse_iterator rbegin() {
-            return std::reverse_iterator(end());
-        }
-
-        /**
-         * @return Reverse iterator to a location before the start of this row vector.
-         */
-        reverse_iterator rend() {
-            return std::reverse_iterator(begin());
+        Iterator cend() const {
+            return end();
         }
 
         /**
          * @return Reverse const iterator to the last element of this row vector.
          */
-        reverse_const_iterator rbegin() const {
+        std::reverse_iterator<Iterator> rbegin() const {
             return std::reverse_iterator(end());
         }
 
         /**
          * @return Reverse const iterator to a location before the start of this row vector.
          */
-        reverse_const_iterator rend() const {
+        std::reverse_iterator<Iterator> rend() const {
             return std::reverse_iterator(begin());
         }
 
         /**
          * @return Reverse const iterator to the last element of this row vector.
          */
-        reverse_const_iterator crbegin() const {
+        std::reverse_iterator<Iterator> crbegin() const {
             return std::reverse_iterator(cend());
         }
 
         /**
          * @return Reverse const iterator to a location before the start of this row vector.
          */
-        reverse_const_iterator crend() const {
+        std::reverse_iterator<Iterator> crend() const {
             return std::reverse_iterator(cbegin());
         }
     };
@@ -634,18 +646,33 @@ public:
      * @param r Row of interest.
      * @return A view on the row.
      */
-    View row(size_type r) {
-        return Row(begin() + r, my_matrix.ncol);
+    View<iterator, reference> row(size_type r) {
+        return View<iterator, reference>(begin() + r, my_matrix.ncol);
     }
 
     /**
      * @param r Row of interest.
      * @return A const view on the row.
      */
-    ConstView row(size_type r) const {
-        return Row(begin() + r, my_matrix.ncol);
+    View<const_iterator, const_reference> row(size_type r) const {
+        return View<const_iterator, const_reference>(begin() + r, my_matrix.ncol);
     }
 
+    /**
+     * @param c Column of interest.
+     * @return A view on the column.
+     */
+    View<iterator, reference> column(size_type c) {
+        return View<iterator, reference>(begin() + c * my_matrix.nrow, 1);
+    }
+
+    /**
+     * @param r Column of interest.
+     * @return A const view on the column.
+     */
+    View<const_iterator, const_reference> column(size_type c) const {
+        return View<const_iterator, const_reference>(begin() + c * my_matrix.nrow, 1);
+    }
 
 public:
     /**
