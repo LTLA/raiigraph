@@ -4,7 +4,6 @@
 #include "igraph.h"
 #include "error.hpp"
 #include <algorithm>
-#include <initializer_list>
 #include <iterator>
 
 namespace raiigraph {
@@ -18,7 +17,7 @@ class Matrix {
 private:
     void setup(igraph_integer_t nr, igraph_integer_t nc) {
         if (Ns_::init(&my_matrix, nr, nc)) {
-            throw std::runtime_error("failed to initialize integer igraph matrix of size " + std::to_string(size));
+            throw std::runtime_error("failed to initialize igraph matrix of dimensions " + std::to_string(nr) + " x " + std::to_string(nc));
         }
     }
 
@@ -75,9 +74,9 @@ public:
 
 public:
     /**
-     * Default constructor, creates an initialized matrix of length 0.
+     * Default constructor, creates an initialized matrix with no rows or columns.
      */
-    Matrix() : Matrix(0) {}
+    Matrix() : Matrix(0, 0) {}
 
     /**
      * @param nr Number of rows in the matrix.
@@ -86,7 +85,9 @@ public:
      */
     Matrix(size_type nr, size_type nc, const value_type& val = value_type()) {
         setup(nr, nc);
-        std::fill_n(begin(), size, val);
+        if (val != 0) { // setup() already zero-initializes the backing array.
+            std::fill(begin(), end(), val);
+        }
     }
 
     /**
@@ -183,7 +184,7 @@ public:
      * @return Capacity of this matrix.
      */
     size_type capacity() const {
-        return my_matrix.stor_end - my_matrix.stor_begin;
+        return my_matrix.data.stor_end - my_matrix.data.stor_begin;
     }
 
 public:
@@ -191,7 +192,7 @@ public:
      * Clear this matrix, leaving it with a size of zero.
      */
     void clear() {
-        Ns_::clear(&my_matrix);
+        resize(0, 0);
     }
 
     /**
@@ -203,17 +204,10 @@ public:
     void resize(size_type nr, size_type nc, value_type val = value_type()) {
         auto old_size = this->size();
         check_code(Ns_::resize(&my_matrix, nr, nc));
-        if (old_size < size) {
-            std::fill_n(begin() + old_size, size - old_size, val);
+        auto new_size = this->size();
+        if (old_size < new_size) {
+            std::fill_n(begin() + old_size, new_size - old_size, val);
         }
-    }
-
-    /**
-     * Reserve the capacity of the matrix.
-     * @param capacity Capacity of the matrix.
-     */
-    void reserve(size_type capacity) {
-        check_code(Ns_::reserve(&my_matrix, capacity));
     }
 
     /**
@@ -224,22 +218,6 @@ public:
     }
 
 public:
-    /**
-     * @param i Index on the matrix.
-     * @return Reference to the value at `i`.
-     */
-    reference operator[](size_type i) {
-        return *(begin() + i);
-    }
-
-    /**
-     * @param i Index on the matrix.
-     * @return Const reference to the value at `i`.
-     */
-    const_reference operator[](size_type i) const {
-        return *(begin() + i);
-    }
-
     /**
      * @param i Index on the matrix.
      * @return Reference to the value at `i`.
@@ -270,7 +248,7 @@ public:
      * @param c Column of interest.
      * @return Const reference to the value at `(r, c)`.
      */
-    const_reference operator[](size_type r, size_type c) const {
+    const_reference operator()(size_type r, size_type c) const {
         return *(begin() + r + c * my_matrix.nrow);
     }
 
@@ -307,14 +285,14 @@ public:
      * @return Iterator to the start of this matrix.
      */
     iterator begin() {
-        return my_matrix.stor_begin;
+        return my_matrix.data.stor_begin;
     }
 
     /**
      * @return Iterator to the end of this matrix.
      */
     iterator end() {
-        return my_matrix.end;
+        return my_matrix.data.stor_end;
     }
 
     /**
@@ -335,28 +313,28 @@ public:
      * @return Const iterator to the start of this matrix.
      */
     const_iterator cbegin() const {
-        return my_matrix.stor_begin;
+        return my_matrix.data.stor_begin;
     }
 
     /**
      * @return Const iterator to the end of this matrix.
      */
     const_iterator cend() const {
-        return my_matrix.end;
+        return my_matrix.data.stor_end;
     }
 
     /**
      * @return Pointer to the start of this matrix.
      */
     value_type* data() {
-        return my_matrix.stor_begin;
+        return my_matrix.data.stor_begin;
     }
 
     /**
      * @return Const pointer to the start of this matrix.
      */
     const value_type* data() const {
-        return my_matrix.stor_begin;
+        return my_matrix.data.stor_begin;
     }
 
     /**
@@ -404,18 +382,20 @@ public:
 public:
     /**
      * @brief A `Vector`-like view into a row/column of the matrix.
+     *
+     * Note that views are potentially invalidated by any re/deallocations in the parent `Matrix`. 
      */
     template<typename BaseIterator, typename BaseReference>
-    class BaseView {
+    class View {
     /**
      * @cond
      */
     public:
-        BaseView(BaseIterator start, size_type step, size_type length) : start(start), step(step), length(length) {}
+        View(BaseIterator start, size_type step_size, size_type max_steps) : start(start), step_size(step_size), max_steps(max_steps) {}
 
     private:
         BaseIterator start;
-        size_type jump, length;
+        size_type step_size, max_steps;
     /**
      * @endcond
      */
@@ -425,14 +405,14 @@ public:
          * @return Whether the row vector is empty.
          */
         bool empty() const {
-            return ncol == 0;
+            return max_steps == 0;
         }
 
         /**
          * @return Length of the row vector.
          */
         size_type size() const {
-            return ncol;
+            return max_steps;
         }
 
         /**
@@ -440,14 +420,14 @@ public:
          * @return Reference to the value at `i`.
          */
         BaseReference operator[](size_type i) const {
-            return *(start + i * jump); // no need to cast to avoid overflow, as size_type determines the max size anyway.
+            return *(start + i * step_size); // no need to cast to avoid overflow, as size_type determines the max size anyway.
         }
 
         /**
          * @return Reference to the last element in the row vector.
          */
         BaseReference back() const {
-            return (*this)[length - 1];
+            return (*this)[max_steps - 1];
         }
 
         /**
@@ -464,7 +444,7 @@ public:
         struct Iterator {
         private:
             iterator start;
-            size_type step = 0;
+            size_type step_size = 0;
 
             // Note that we don't just shift 'start' directly as defining the
             // 'end()' iterator of the view could up shifting 'start' to an
@@ -481,8 +461,8 @@ public:
             // List of required methods taken from https://cplusplus.com/reference/iterator/RandomAccessIterator/.
             using iterator_category = std::random_access_iterator_tag;
 
-            explicit Iterator(iterator start, size_type step, size_type position) : 
-                start(std::move(start)), step(step), offset(position * step) {}
+            explicit Iterator(iterator start, size_type step_size, size_type position) : 
+                start(std::move(start)), step_size(step_size), offset(position * step_size) {}
 
             Iterator() = default;
 
@@ -519,65 +499,65 @@ public:
             }
 
             BaseReference operator[](size_type i) const {
-                return *(start + offset + step * i);
+                return *(start + offset + step_size * i);
             }
 
         public:
             Iterator& operator++() { 
-                offset += step;
+                offset += step_size;
                 return *this; 
             }
 
             Iterator operator++(int) { 
                 auto copy = *this;
-                offset += step;
+                offset += step_size;
                 return copy;
             }
 
             Iterator& operator--() { 
-                offset -= step;
+                offset -= step_size;
                 return *this; 
             }
 
             Iterator operator--(int) { 
                 auto copy = *this;
-                offset -= step;
+                offset -= step_size;
                 return copy;
             }
 
             Iterator operator+(difference_type n) const { 
                 auto copy = *this;
-                copy.offset += step * n;
+                copy.offset += step_size * n;
                 return copy;
             }
 
             Iterator& operator+=(difference_type n) { 
-                offset += step * n;
+                offset += step_size * n;
                 return *this; 
             }
 
             friend Iterator operator+(difference_type n, Iterator it) {
-                it.offset += step * n;
+                it.offset += it.step_size * n;
                 return it;
             }
 
-            Iterator operator-(difference_type m) const { 
+            Iterator operator-(difference_type n) const { 
                 auto copy = *this;
-                copy.offset -= step * n;
+                copy.offset -= step_size * n;
                 return copy;
             }
 
             Iterator& operator-=(difference_type n) { 
-                offset -= step * n;
-                return copy;
+                offset -= step_size * n;
+                return *this;
             }
 
             difference_type operator-(const Iterator& other) const {
                 if (other.offset > offset) {
-                    difference_type delta = (other.offset - offset) / step;
+                    difference_type delta = (other.offset - offset) / step_size;
                     return -delta;
                 } else {
-                    return (offset - other.offset) / step;
+                    return (offset - other.offset) / step_size;
                 }
             }
             /**
@@ -589,14 +569,14 @@ public:
          * @return Iterator to the start of this row vector.
          */
         Iterator begin() const {
-            return Iterator(start, jump, 0);
+            return Iterator(start, step_size, 0);
         }
 
         /**
          * @return Iterator to the end of this row vector.
          */
         Iterator end() const {
-            return Iterator(start, jump, length);
+            return Iterator(start, step_size, max_steps);
         }
 
         /**

@@ -17,6 +17,7 @@ enable_testing()
 add_executable(
     libtest
     src/Vector.cpp
+    src/Matrix.cpp
     src/RNGScope.cpp
 )
 
