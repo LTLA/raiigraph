@@ -16,7 +16,8 @@ Currently, we implement wrappers for the following **igraph** structures:
 | **igraph** structure | **raiigraph** wrapper |
 |----------------------|-----------------------|
 | `igraph_vector_t`    | `raiigraph::RealVector` |
-| `igraph_vector_int_t` | `raiigraph::IntegerVector` |
+| `igraph_vector_int_t` | `raiigraph::IntVector` |
+| `igraph_vector_bool_t` | `raiigraph::BoolVector` |
 | `igraph_matrix_int_t` | `raiigraph::IntegerMatrix` |
 | `igraph_t` | `raiigraph::Graph` |
 
@@ -49,12 +50,18 @@ raiigraph::Graph outside;
 }
 ```
 
-Some of the wrappers also provide convenience methods to query the underlying data structure without having to extract the raw pointer.:
+Some of the wrappers also provide convenience methods to query the underlying data structure without having to extract the raw pointer:
 
 ```cpp
 raiigraph::Graph example(20, IGRAPH_UNDIRECTED);
 example.ecount(); // number of edges
 example.vcount(); // number of vertices
+
+// Vector provides std::vector-like behavior.
+raiigraph::RealVector vec(50);
+thing[0] = 1;
+std::fill(thing.begin() + 2, thing.begin() + 5, 10);
+auto& last = thing.back();
 ```
 
 Check out the [reference documentation](https://ltla.github.io/raiigraph) for more details.

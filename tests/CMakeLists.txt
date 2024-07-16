@@ -16,7 +16,7 @@ enable_testing()
 
 add_executable(
     libtest
-    src/raiigraph.cpp
+    src/Vector.cpp
     src/RNGScope.cpp
 )
 
