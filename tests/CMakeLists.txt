@@ -17,6 +17,7 @@ enable_testing()
 add_executable(
     libtest
     src/raiigraph.cpp
+    src/RNGScope.cpp
 )
 
 target_link_libraries(

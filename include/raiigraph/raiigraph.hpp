@@ -1,7 +1,8 @@
-#ifndef IGRAPHPP_IGRAPHPP_HPP 
-#define IGRAPHPP_IGRAPHPP_HPP
+#ifndef RAIIGRAPH_HPP 
+#define RAIIGRAPH_HPP
 
 #include "igraph.h"
+#include "RNGScope.hpp"
 
 /**
  * @file raiigraph.hpp
@@ -14,53 +15,6 @@
  * @brief Utilities for manipulating **igraph** data structures in C++.
  */
 namespace raiigraph {
-
-/**
- * @brief Control the **igraph** RNG via RAII.
- *
- * When an instance of this class is created, it will replace the global default **igraph** RNG with its own.
- * When it is destroyed, it will restore the default to the RNG that was present before its construction.
- */
-class RNGScope {
-public:
-    /**
-     * @param seed Seed for the **igraph** RNG.
-     */
-    RNGScope(int seed) {
-        if (igraph_rng_init(&my_rng, &igraph_rngtype_mt19937)) {
-            throw std::runtime_error("failed to initialize an instance of igraph's RNG");
-        }
-
-        if (igraph_rng_seed(&my_rng, seed)) {
-            igraph_rng_destroy(&my_rng);
-            throw std::runtime_error("failed to set the seed on igraph's RNG");
-        }
-
-        my_previous = igraph_rng_default();
-        igraph_rng_set_default(&my_rng); // older versions of igraph just return void, so don't use this to set my_previous.
-    }
-
-    /**
-     * @cond
-     */
-    // Just deleting the methods here, we shouldn't have to copy.
-    RNGScope(const RNGScope& other) = delete;
-    RNGScope& operator=(const RNGScope& other) = delete;
-    RNGScope(RNGScope&& other) = delete;
-    RNGScope& operator=(RNGScope&& other) = delete;
-
-    ~RNGScope() {
-        igraph_rng_set_default(my_previous);
-        igraph_rng_destroy(&my_rng);
-    }
-    /**
-     * @endcond
-     */
-
-private:
-    igraph_rng_t* my_previous;
-    igraph_rng_t my_rng;
-};
 
 /**
  * @brief Wrapper around an `igraph_vector_int_t` with RAII semantics.
