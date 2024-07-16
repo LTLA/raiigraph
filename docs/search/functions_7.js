@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vcount_0',['vcount',['../classraiigraph_1_1Graph.html#ad7a20f9139b6af12b7fc63b106687d43',1,'raiigraph::Graph']]]
+  ['max_5fsize_0',['max_size',['../classraiigraph_1_1Vector.html#afaba84475613181b00268a6a5a87f977',1,'raiigraph::Vector']]]
 ];

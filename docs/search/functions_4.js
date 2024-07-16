@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ncol_0',['ncol',['../classraiigraph_1_1IntegerMatrix.html#a58bf8907ca0a74dd178dfce9da1e5f5c',1,'raiigraph::IntegerMatrix']]],
-  ['nrow_1',['nrow',['../classraiigraph_1_1IntegerMatrix.html#a4f2559801863191a884eae2500e69a9b',1,'raiigraph::IntegerMatrix']]]
+  ['front_0',['front',['../classraiigraph_1_1Vector.html#ac4286dc3c2685a3e28043f9d9e93fe6b',1,'raiigraph::Vector::front()'],['../classraiigraph_1_1Vector.html#a68a04bf0ce6018a18fca45ad68138238',1,'raiigraph::Vector::front() const']]]
 ];
