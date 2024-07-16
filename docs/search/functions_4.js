@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['realvector_0',['realvector',['../classraiigraph_1_1RealVector.html#ae01162a40bbf10dbc98cb76d894823ea',1,'raiigraph::RealVector::RealVector(igraph_integer_t size=0)'],['../classraiigraph_1_1RealVector.html#a7e3c29090a16bca82036e20d763be7c5',1,'raiigraph::RealVector::RealVector(igraph_vector_t vector)']]],
-  ['rngscope_1',['RNGScope',['../classraiigraph_1_1RNGScope.html#aa336d2dce15c2715c9da7de963e658c9',1,'raiigraph::RNGScope']]]
+  ['ncol_0',['ncol',['../classraiigraph_1_1IntegerMatrix.html#a58bf8907ca0a74dd178dfce9da1e5f5c',1,'raiigraph::IntegerMatrix']]],
+  ['nrow_1',['nrow',['../classraiigraph_1_1IntegerMatrix.html#a4f2559801863191a884eae2500e69a9b',1,'raiigraph::IntegerMatrix']]]
 ];

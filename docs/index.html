@@ -101,7 +101,7 @@ Quick start</h1>
 <div class="line">    <span class="comment">// ... Do something with igraph functions.</span></div>
 <div class="line"> </div>
 <div class="line">} <span class="comment">// thing&#39;s memory is released when &#39;thing&#39; goes out of scope.</span></div>
-<div class="ttc" id="aclassraiigraph_1_1IntegerVector_html"><div class="ttname"><a href="classraiigraph_1_1IntegerVector.html">raiigraph::IntegerVector</a></div><div class="ttdoc">Wrapper around an igraph_vector_int_t with RAII semantics.</div><div class="ttdef"><b>Definition</b> raiigraph.hpp:68</div></div>
+<div class="ttc" id="aclassraiigraph_1_1IntegerVector_html"><div class="ttname"><a href="classraiigraph_1_1IntegerVector.html">raiigraph::IntegerVector</a></div><div class="ttdoc">Wrapper around an igraph_vector_int_t with RAII semantics.</div><div class="ttdef"><b>Definition</b> raiigraph.hpp:22</div></div>
 </div><!-- fragment --><p>We also follow the rule of 5 convention, so copy/move assignment works as expected:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classraiigraph_1_1Graph.html">raiigraph::Graph</a> outside;</div>
 <div class="line"> </div>
@@ -112,7 +112,7 @@ Quick start</h1>
 <div class="line"> </div>
 <div class="line">    outside = std::move(inside);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html"><div class="ttname"><a href="classraiigraph_1_1Graph.html">raiigraph::Graph</a></div><div class="ttdoc">Wrapper around the igraph_t class from igraph.</div><div class="ttdef"><b>Definition</b> raiigraph.hpp:371</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html"><div class="ttname"><a href="classraiigraph_1_1Graph.html">raiigraph::Graph</a></div><div class="ttdoc">Wrapper around the igraph_t class from igraph.</div><div class="ttdef"><b>Definition</b> raiigraph.hpp:325</div></div>
 </div><!-- fragment --><p>Some of the wrappers also provide convenience methods to query the underlying data structure without having to extract the raw pointer.:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classraiigraph_1_1Graph.html">raiigraph::Graph</a> example(20, IGRAPH_UNDIRECTED);</div>
 <div class="line">example.ecount(); <span class="comment">// number of edges</span></div>
