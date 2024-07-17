@@ -124,7 +124,7 @@ public:
      * This constructor will leave `other` in a valid but unspecified state.
      */
     Matrix(Matrix<Ns_>&& other) {
-        setup(0); // we must leave 'other' in a valid state.
+        setup(0, 0); // we must leave 'other' in a valid state.
         std::swap(my_matrix, other.my_matrix);
     }
 
@@ -383,6 +383,9 @@ public:
     /**
      * @brief A `Vector`-like view into a row/column of the matrix.
      *
+     * @tparam BaseIterator Internal use only. 
+     * @tparam BaseReference Internal use only. 
+     *
      * Note that views are potentially invalidated by any re/deallocations in the parent `Matrix`. 
      */
     template<typename BaseIterator, typename BaseReference>
@@ -443,7 +446,7 @@ public:
          */
         struct Iterator {
         private:
-            iterator start;
+            BaseIterator start;
             size_type step_size = 0;
 
             // Note that we don't just shift 'start' directly as defining the
@@ -454,19 +457,25 @@ public:
             // 'start' upon dereference of the iterator. This ensures that an
             // invalid address is never constructed even if it is unused.
             size_type offset = 0; 
-        public:
+
             /**
              * @cond
              */
-            // List of required methods taken from https://cplusplus.com/reference/iterator/RandomAccessIterator/.
+        public:
             using iterator_category = std::random_access_iterator_tag;
+            typedef typename Ns_::value_type value_type;
+            typedef decltype(&std::declval<BaseReference>()) pointer;
+            typedef igraph_integer_t difference_type;
+            typedef BaseReference reference;
 
-            explicit Iterator(iterator start, size_type step_size, size_type position) : 
+        public:
+            explicit Iterator(BaseIterator start, size_type step_size, size_type position) : 
                 start(std::move(start)), step_size(step_size), offset(position * step_size) {}
 
             Iterator() = default;
 
         public:
+            // List of required methods taken from https://cplusplus.com/reference/iterator/RandomAccessIterator/.
             bool operator==(const Iterator& other) const { 
                 // see comments at https://stackoverflow.com/questions/4657513/comparing-iterators-from-different-containers
                 // regarding the UB of comparing iterators from different containers, so we'll just quietly ignore it.
@@ -627,7 +636,7 @@ public:
      * @return A view on the row.
      */
     View<iterator, reference> row(size_type r) {
-        return View<iterator, reference>(begin() + r, my_matrix.ncol);
+        return View<iterator, reference>(begin() + r, my_matrix.nrow, my_matrix.ncol);
     }
 
     /**
@@ -635,7 +644,7 @@ public:
      * @return A const view on the row.
      */
     View<const_iterator, const_reference> row(size_type r) const {
-        return View<const_iterator, const_reference>(begin() + r, my_matrix.ncol);
+        return View<const_iterator, const_reference>(begin() + r, my_matrix.nrow, my_matrix.ncol);
     }
 
     /**
@@ -643,7 +652,7 @@ public:
      * @return A view on the column.
      */
     View<iterator, reference> column(size_type c) {
-        return View<iterator, reference>(begin() + c * my_matrix.nrow, 1);
+        return View<iterator, reference>(begin() + c * my_matrix.nrow, 1, my_matrix.nrow);
     }
 
     /**
@@ -651,7 +660,7 @@ public:
      * @return A const view on the column.
      */
     View<const_iterator, const_reference> column(size_type c) const {
-        return View<const_iterator, const_reference>(begin() + c * my_matrix.nrow, 1);
+        return View<const_iterator, const_reference>(begin() + c * my_matrix.nrow, 1, my_matrix.nrow);
     }
 
 public:
