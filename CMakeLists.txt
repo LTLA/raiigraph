@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(raiigraph
-    VERSION 1.0.0
+    VERSION 1.1.0
     DESCRIPTION "Wrappers for igraph data structures in C++"
     LANGUAGES CXX)
 
