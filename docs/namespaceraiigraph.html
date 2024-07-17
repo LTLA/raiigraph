@@ -96,6 +96,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1IntegerVector.html">IntegerVector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper around an <code>igraph_vector_int_t</code> with RAII semantics.  <a href="classraiigraph_1_1IntegerVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper around <code>igraph_matrix_*_t</code> objects with RAII semantics.  <a href="classraiigraph_1_1Matrix.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1RealVector.html">RealVector</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper around an <code>igraph_vector_t</code> with RAII semantics.  <a href="classraiigraph_1_1RealVector.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,6 +111,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:afefe470459b8ea61e71d3b690a486eb3" id="r_afefe470459b8ea61e71d3b690a486eb3"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt; internal::Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#afefe470459b8ea61e71d3b690a486eb3">IntMatrix</a></td></tr>
+<tr class="separator:afefe470459b8ea61e71d3b690a486eb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2cf0f98c6435f1744140d76e0dd6df0" id="r_ad2cf0f98c6435f1744140d76e0dd6df0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt; internal::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#ad2cf0f98c6435f1744140d76e0dd6df0">RealMatrix</a></td></tr>
+<tr class="separator:ad2cf0f98c6435f1744140d76e0dd6df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b4c0880cc8f6bb5614f22ff802557c5" id="r_a3b4c0880cc8f6bb5614f22ff802557c5"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt; internal::Bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#a3b4c0880cc8f6bb5614f22ff802557c5">BoolMatrix</a></td></tr>
+<tr class="separator:a3b4c0880cc8f6bb5614f22ff802557c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09ab18d782a8dabaaeef5c6feac620a6" id="r_a09ab18d782a8dabaaeef5c6feac620a6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Vector.html">Vector</a>&lt; internal::Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#a09ab18d782a8dabaaeef5c6feac620a6">IntVector</a></td></tr>
 <tr class="separator:a09ab18d782a8dabaaeef5c6feac620a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a539689f82bdaf4c085eb1ad8ac9613bd" id="r_a539689f82bdaf4c085eb1ad8ac9613bd"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Vector.html">Vector</a>&lt; internal::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#a539689f82bdaf4c085eb1ad8ac9613bd">RealVector</a></td></tr>
@@ -123,6 +132,21 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilities for manipulating <b>igraph</b> data structures in C++. </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a3b4c0880cc8f6bb5614f22ff802557c5" name="a3b4c0880cc8f6bb5614f22ff802557c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b4c0880cc8f6bb5614f22ff802557c5">&#9670;&#160;</a></span>BoolMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt;internal::Bool&gt; <a class="el" href="namespaceraiigraph.html#a3b4c0880cc8f6bb5614f22ff802557c5">raiigraph::BoolMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> of <b>igraph</b> booleans. </p>
+
+</div>
+</div>
 <a id="abfa51717233f485aac788c1972c9d949" name="abfa51717233f485aac788c1972c9d949"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abfa51717233f485aac788c1972c9d949">&#9670;&#160;</a></span>BoolVector</h2>
 
@@ -138,6 +162,21 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="afefe470459b8ea61e71d3b690a486eb3" name="afefe470459b8ea61e71d3b690a486eb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefe470459b8ea61e71d3b690a486eb3">&#9670;&#160;</a></span>IntMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt;internal::Integer&gt; <a class="el" href="namespaceraiigraph.html#afefe470459b8ea61e71d3b690a486eb3">raiigraph::IntMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> of <b>igraph</b> integers. </p>
+
+</div>
+</div>
 <a id="a09ab18d782a8dabaaeef5c6feac620a6" name="a09ab18d782a8dabaaeef5c6feac620a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a09ab18d782a8dabaaeef5c6feac620a6">&#9670;&#160;</a></span>IntVector</h2>
 
@@ -150,6 +189,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> of <b>igraph</b> integers. </p>
+
+</div>
+</div>
+<a id="ad2cf0f98c6435f1744140d76e0dd6df0" name="ad2cf0f98c6435f1744140d76e0dd6df0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2cf0f98c6435f1744140d76e0dd6df0">&#9670;&#160;</a></span>RealMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classraiigraph_1_1Matrix.html">Matrix</a>&lt;internal::Real&gt; <a class="el" href="namespaceraiigraph.html#ad2cf0f98c6435f1744140d76e0dd6df0">raiigraph::RealMatrix</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> of <b>igraph</b> reals. </p>
 
 </div>
 </div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../classraiigraph_1_1Vector.html',1,'raiigraph']]]
+  ['realvector_0',['RealVector',['../classraiigraph_1_1RealVector.html',1,'raiigraph']]],
+  ['rngscope_1',['RNGScope',['../classraiigraph_1_1RNGScope.html',1,'raiigraph']]]
 ];
