@@ -14,6 +14,17 @@ TEST(Vector, Construction) {
     EXPECT_FALSE(ivec.empty());
     EXPECT_EQ(ivec.size(), 50);
     EXPECT_FALSE(ivec.get() == NULL);
+    for (auto x : ivec) { // check it was indeed zero-initialized.
+        EXPECT_EQ(x, 0);
+    }
+
+    // Check that the non-default fill works.
+    {
+        raiigraph::IntVector ivec10(50, 10);
+        for (auto x : ivec10) {
+            EXPECT_EQ(x, 10);
+        }
+    }
 
     // Trying copy construction/assignment to get some coverage.
     {

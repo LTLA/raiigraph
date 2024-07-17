@@ -18,6 +18,17 @@ TEST(Matrix, Construction) {
     EXPECT_EQ(imat.nrow(), 50);
     EXPECT_EQ(imat.ncol(), 20);
     EXPECT_FALSE(imat.get() == NULL);
+    for (auto x : imat) { // check it was indeed zero-initialized.
+        EXPECT_EQ(x, 0);
+    }
+
+    // Check that the non-default fill works.
+    {
+        raiigraph::IntMatrix imat10(50, 20, 10);
+        for (auto x : imat10) {
+            EXPECT_EQ(x, 10);
+        }
+    }
 
     // Trying copy construction/assignment to get some coverage.
     {
@@ -61,6 +72,22 @@ TEST(Matrix, Construction) {
         raiigraph::IntMatrix owner(std::move(tmp));
         EXPECT_EQ(owner.size(), 1000);
     }
+}
+
+TEST(Matrix, Resize) {
+    raiigraph::IntMatrix contents(10, 10);
+    contents.clear();
+    EXPECT_TRUE(contents.empty());
+
+    contents.resize(10, 10);
+    for (auto x : contents) { // resizing zero-initializes correctly.
+        EXPECT_EQ(x, 0);
+    }
+
+    contents.resize(20, 10, 1); // resizing respects other fill values.
+    EXPECT_EQ(contents[99], 0);
+    EXPECT_EQ(contents[100], 1);
+    EXPECT_EQ(contents.back(), 1);
 }
 
 TEST(Matrix, Access1D) {

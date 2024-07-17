@@ -214,7 +214,6 @@ public:
      * Resize the matrix to the specified number of rows and columns.
      * Existing values are preserved by considering the original and new matrices as 1-dimensional arrays in column-major order;
      * the contents of the original matrix are simply copied into the first `size()` entries of the new matrix.
-     * An element `(i, j)` in the original matrix will only be present in the new matrix if `nc` is the same as the original `ncol()` (and `i < nr`, of course).
      *
      * @param nr New number of rows.
      * @param nc New number of columns.
