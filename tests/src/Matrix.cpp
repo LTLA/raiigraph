@@ -146,6 +146,12 @@ TEST(Matrix, AccessRow) {
     const auto& const_contents = contents;
 
     for (int i = 0; i < 10; ++i) {
+        // Checking a simple copy.
+        auto copy = contents.row_copy(i);
+        EXPECT_EQ(copy.front(), i);
+        EXPECT_EQ(copy.back(), i + 190);
+
+        // Checking the views.
         auto row = contents.row(i);
         EXPECT_EQ(row.size(), 20);
         EXPECT_FALSE(row.empty());
@@ -247,6 +253,11 @@ TEST(Matrix, AccessColumn) {
     const auto& const_contents = contents;
 
     for (int j = 0; j < 20; ++j) {
+        auto copy = contents.column_copy(j);
+        EXPECT_EQ(copy.front(), j * 10);
+        EXPECT_EQ(copy.back(), j * 10 + 9);
+
+        // Checking the views.
         auto row = contents.column(j);
         EXPECT_EQ(row.size(), 10);
         EXPECT_FALSE(row.empty());

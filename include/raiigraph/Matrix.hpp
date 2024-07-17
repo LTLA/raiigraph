@@ -3,6 +3,7 @@
 
 #include "igraph.h"
 #include "error.hpp"
+#include "Vector.hpp"
 #include <algorithm>
 #include <iterator>
 
@@ -71,6 +72,11 @@ public:
      * Reverse const iterator for the matrix contents.
      */
     typedef std::reverse_iterator<const_iterator> reverse_const_iterator;
+
+    /**
+     * The **raiigraph** vector class with the same `value_type` as this matrix.
+     */
+    typedef typename Ns_::vector_type vector_type;
 
 public:
     /**
@@ -198,7 +204,7 @@ public:
     /**
      * Resize the matrix to the specified number of rows and columns.
      * @param nr New number of rows.
-     * @param nr New number of columns.
+     * @param nc New number of columns.
      * @param val Value to use to fill the new elements, if `size` is greater than the current size.
      */
     void resize(size_type nr, size_type nc, value_type val = value_type()) {
@@ -648,6 +654,16 @@ public:
     }
 
     /**
+     * @param r Row of interest.
+     * @return An **igraph** vector containing the contents of the row.
+     */
+    vector_type row_copy(size_type r) const {
+        vector_type output(ncol());
+        check_code(Ns_::get_row(&my_matrix, output.get(), r));
+        return output;
+    }
+
+    /**
      * @param c Column of interest.
      * @return A view on the column.
      */
@@ -656,11 +672,21 @@ public:
     }
 
     /**
-     * @param r Column of interest.
+     * @param c Column of interest.
      * @return A const view on the column.
      */
     View<const_iterator, const_reference> column(size_type c) const {
         return View<const_iterator, const_reference>(begin() + c * my_matrix.nrow, 1, my_matrix.nrow);
+    }
+
+    /**
+     * @param c Column of interest.
+     * @return An **igraph** vector containing the contents of the column.
+     */
+    vector_type column_copy(size_type c) const {
+        vector_type output(nrow());
+        check_code(Ns_::get_col(&my_matrix, output.get(), c));
+        return output;
     }
 
 public:
@@ -714,11 +740,12 @@ private:
 /**
  * @cond
  */
-namespace internal {
+namespace matrix_internal {
 
 struct Integer {
     typedef igraph_integer_t value_type;
     typedef igraph_matrix_int_t igraph_type;
+    typedef IntVector vector_type;
 
 #define RAIIGRAPH_MATRIX_SUFFIX _int
 #include "fragments/matrix.hpp"
@@ -728,6 +755,7 @@ struct Integer {
 struct Real {
     typedef igraph_real_t value_type;
     typedef igraph_matrix_t igraph_type;
+    typedef RealVector vector_type;
 
 #define RAIIGRAPH_MATRIX_SUFFIX
 #include "fragments/matrix.hpp"
@@ -737,6 +765,7 @@ struct Real {
 struct Bool {
     typedef igraph_bool_t value_type;
     typedef igraph_matrix_bool_t igraph_type;
+    typedef BoolVector vector_type;
 
 #define RAIIGRAPH_MATRIX_SUFFIX _bool
 #include "fragments/matrix.hpp"
@@ -751,7 +780,7 @@ struct Bool {
 /**
  * Matrix of **igraph** integers.
  */
-typedef Matrix<internal::Integer> IntMatrix;
+typedef Matrix<matrix_internal::Integer> IntMatrix;
 
 /**
  * @cond
@@ -765,12 +794,12 @@ typedef IntMatrix IntegerMatrix;
 /**
  * Matrix of **igraph** reals.
  */
-typedef Matrix<internal::Real> RealMatrix;
+typedef Matrix<matrix_internal::Real> RealMatrix;
 
 /**
  * Matrix of **igraph** booleans.
  */
-typedef Matrix<internal::Bool> BoolMatrix;
+typedef Matrix<matrix_internal::Bool> BoolMatrix;
 
 }
 

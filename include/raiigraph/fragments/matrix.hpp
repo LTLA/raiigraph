@@ -30,6 +30,16 @@ static auto resize(igraph_type* ptr, igraph_integer_t nr, igraph_integer_t nc) {
     return RAIIGRAPH_MATRIX_FUNCTION(resize)(ptr, nr, nc);
 }
 
+template<typename Vector_>
+static auto get_row(const igraph_type* ptr, Vector_* vec, igraph_integer_t i) {
+    return RAIIGRAPH_MATRIX_FUNCTION(get_row)(ptr, vec, i);
+}
+
+template<typename Vector_>
+static auto get_col(const igraph_type* ptr, Vector_* vec, igraph_integer_t i) {
+    return RAIIGRAPH_MATRIX_FUNCTION(get_col)(ptr, vec, i);
+}
+
 static void shrink_to_fit(igraph_type* ptr) {
     RAIIGRAPH_MATRIX_FUNCTION(resize_min)(ptr);
 }
