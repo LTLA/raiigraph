@@ -6,15 +6,18 @@
 #include "error.hpp"
 
 /**
- * @file raiigraph.hpp
- *
- * @brief Utilities for manipulating **igraph** data structures in C++.
+ * @file Graph.hpp
+ * @brief Wrapper around `igraph_t` objects with RAII behavior.
  */
 
 namespace raiigraph {
 
 /**
- * @brief Wrapper around the `igraph_t` class from **igraph**.
+ * @brief Wrapper around `igraph_t` objects with RAII behavior. 
+ *
+ * This class has ownership of the underlying `igraph_t` object, handling both its initialization and destruction.
+ * Users should only pass instances of this class to **igraph** functions that accept an already-initialized graph.
+ * Users should not attempt to destroy the graph manually as this is done automatically when the `Graph` goes out of scope.
  */
 class Graph {
 private:
@@ -26,7 +29,7 @@ private:
 
 public:
     /**
-     * Create an empty graph.
+     * Create an empty graph, i.e., with no edges.
      *
      * @param num_vertices Number of vertices.
      * @param directed Whether the graph is directed.
@@ -36,8 +39,9 @@ public:
     }
 
     /**
-     * @param edges Edges between vertices, stored as a vector of non-negative vertex indices of length equal to twice the number of edges.
-     * The `i`-th edge is defined from the first vertex at `edges[2 * i]` to the second vertex at `edges[2 * i + 1]`.
+     * @param edges Edges between vertices, stored as row-major matrix with two columns.
+     * Each row corresponds to an edge and contains its connected vertices.
+     * For example, the `i`-th edge is defined from the first vertex at `edges[2 * i]` to the second vertex at `edges[2 * i + 1]`.
      * @param num_vertices Number of vertices in the graph.
      * This should be greater than the largest index in `edges`.
      * @param directed Whether the graph is directed.
@@ -103,12 +107,12 @@ public:
         return *this;
     }
 
+    /**
+     * Destructor.
+     */
     ~Graph() {
         igraph_destroy(&my_graph);
     }
-    /**
-     * @endcond
-     */
 
 public:
     /**
@@ -236,7 +240,7 @@ public:
 
 public:
     /**
-     * @return Pointer to the underlying **igraph** vector object.
+     * @return Pointer to the underlying **igraph** graph object.
      * This is guaranteed to be non-NULL and initialized.
      */
     operator igraph_t*() {
@@ -244,7 +248,7 @@ public:
     }
 
     /**
-     * @return Const pointer to the underlying **igraph** vector object.
+     * @return Const pointer to the underlying **igraph** graph object.
      * This is guaranteed to be non-NULL and initialized.
      */
     operator const igraph_t*() const {

@@ -7,18 +7,27 @@
 #include <initializer_list>
 #include <iterator>
 
+/**
+ * @file Vector.hpp
+ * @brief Wrapper around `igraph_vector_*_t` objects with RAII behavior.
+ */
+
 namespace raiigraph {
 
 /**
- * @brief Wrapper around `igraph_vector_*_t` objects with RAII semantics.
+ * @brief Wrapper around `igraph_vector_*_t` objects with RAII behavior.
  * @tparam Ns_ Structure-based namespace with static methods, internal use only.
+ *
+ * This class has ownership of the underlying `igraph_vector_*_t` object, handling both its initialization and destruction.
+ * Users should only pass instances of this class to **igraph** functions that accept an already-initialized vector.
+ * Users should not attempt to destroy the vector manually as this is done automatically when the `Vector` goes out of scope.
  */
 template<class Ns_>
 class Vector {
 private:
     void setup(igraph_integer_t size) {
         if (Ns_::init(&my_vector, size)) {
-            throw std::runtime_error("failed to initialize integer igraph vector of size " + std::to_string(size));
+            throw std::runtime_error("failed to initialize igraph vector of size " + std::to_string(size));
         }
     }
 
@@ -225,8 +234,8 @@ public:
     }
 
     /**
-     * Add a new element to the end of the vector.
-     * @param val Value to be added.
+     * Construct and add a new element to the end of the vector.
+     * @param args Arguments for the `value_type` constructor.
      */
     template<typename ... Args>
     void emplace_back(Args&& ... args) {
@@ -274,9 +283,9 @@ public:
     }
 
     /**
-     * Insert an element into the vector.
+     * Construct and insert an element into the vector.
      * @param pos Position at which to insert the new element.
-     * @param val Value to be inserted.
+     * @param args Arguments for the `value_type` constructor.
      * @return Iterator to the newly inserted element.
      */
     template<typename ... Args>

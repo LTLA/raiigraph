@@ -7,11 +7,20 @@
 #include <algorithm>
 #include <iterator>
 
+/**
+ * @file Matrix.hpp
+ * @brief Wrapper around `igraph_matrix_*_t` objects with RAII behavior.
+ */
+
 namespace raiigraph {
 
 /**
- * @brief Wrapper around `igraph_matrix_*_t` objects with RAII semantics.
+ * @brief Wrapper around `igraph_matrix_*_t` objects with RAII behavior.
  * @tparam Ns_ Structure-based namespace with static methods, internal use only.
+ *
+ * This class has ownership of the underlying `igraph_matrix_*_t` object, handling both its initialization and destruction.
+ * Users should only pass instances of this class to **igraph** functions that accept an already-initialized matrix.
+ * Users should not attempt to destroy the matrix manually as this is done automatically when the `Matrix` goes out of scope.
  */
 template<class Ns_>
 class Matrix {
@@ -203,9 +212,13 @@ public:
 
     /**
      * Resize the matrix to the specified number of rows and columns.
+     * Existing values are preserved by considering the original and new matrices as 1-dimensional arrays in column-major order;
+     * the contents of the original matrix are simply copied into the first `size()` entries of the new matrix.
+     * An element `(i, j)` in the original matrix will only be present in the new matrix if `nc` is the same as the original `ncol()` (and `i < nr`, of course).
+     *
      * @param nr New number of rows.
      * @param nc New number of columns.
-     * @param val Value to use to fill the new elements, if `size` is greater than the current size.
+     * @param val Value to use to fill the new elements, if `nr * nc` is greater than the current `size()`.
      */
     void resize(size_type nr, size_type nc, value_type val = value_type()) {
         auto old_size = this->size();
@@ -387,12 +400,14 @@ public:
 
 public:
     /**
-     * @brief A `Vector`-like view into a row/column of the matrix.
+     * @brief View into a row/column of the matrix.
      *
      * @tparam BaseIterator Internal use only. 
      * @tparam BaseReference Internal use only. 
      *
-     * Note that views are potentially invalidated by any re/deallocations in the parent `Matrix`. 
+     * This provides an STL-like container around a row or column of the matrix for convenient access, modification and iteration.
+     * It avoids the need to copy data to/from the matrix and an external vector when interfacing with STL functions.
+     * Views should be treated like iterators in that they are potentially invalidated by any re/deallocations in the parent `Matrix`. 
      */
     template<typename BaseIterator, typename BaseReference>
     class View {
@@ -411,21 +426,21 @@ public:
 
     public:
         /**
-         * @return Whether the row vector is empty.
+         * @return Whether the view is empty.
          */
         bool empty() const {
             return max_steps == 0;
         }
 
         /**
-         * @return Length of the row vector.
+         * @return Length of the view.
          */
         size_type size() const {
             return max_steps;
         }
 
         /**
-         * @param i Index on the row vector (i.e., the column).
+         * @param i Index on the view (i.e., the column).
          * @return Reference to the value at `i`.
          */
         BaseReference operator[](size_type i) const {
@@ -433,14 +448,14 @@ public:
         }
 
         /**
-         * @return Reference to the last element in the row vector.
+         * @return Reference to the last element in the view.
          */
         BaseReference back() const {
             return (*this)[max_steps - 1];
         }
 
         /**
-         * @return Reference to the first element in the row vector.
+         * @return Reference to the first element in the view.
          */
         BaseReference front() const {
             return *start;
@@ -448,7 +463,7 @@ public:
 
     public:
         /**
-         * @brief Random-access iterator through the row/column vector.
+         * @brief Random-access iterator through the view.
          */
         struct Iterator {
         private:
@@ -581,56 +596,56 @@ public:
         };
 
         /**
-         * @return Iterator to the start of this row vector.
+         * @return Iterator to the start of this view.
          */
         Iterator begin() const {
             return Iterator(start, step_size, 0);
         }
 
         /**
-         * @return Iterator to the end of this row vector.
+         * @return Iterator to the end of this view.
          */
         Iterator end() const {
             return Iterator(start, step_size, max_steps);
         }
 
         /**
-         * @return Const iterator to the start of this row vector.
+         * @return Const iterator to the start of this view.
          */
         Iterator cbegin() const {
             return begin();
         }
 
         /**
-         * @return Const iterator to the end of this row vector.
+         * @return Const iterator to the end of this view.
          */
         Iterator cend() const {
             return end();
         }
 
         /**
-         * @return Reverse const iterator to the last element of this row vector.
+         * @return Reverse const iterator to the last element of this view.
          */
         std::reverse_iterator<Iterator> rbegin() const {
             return std::reverse_iterator(end());
         }
 
         /**
-         * @return Reverse const iterator to a location before the start of this row vector.
+         * @return Reverse const iterator to a location before the start of this view.
          */
         std::reverse_iterator<Iterator> rend() const {
             return std::reverse_iterator(begin());
         }
 
         /**
-         * @return Reverse const iterator to the last element of this row vector.
+         * @return Reverse const iterator to the last element of this view.
          */
         std::reverse_iterator<Iterator> crbegin() const {
             return std::reverse_iterator(cend());
         }
 
         /**
-         * @return Reverse const iterator to a location before the start of this row vector.
+         * @return Reverse const iterator to a location before the start of this view.
          */
         std::reverse_iterator<Iterator> crend() const {
             return std::reverse_iterator(cbegin());
@@ -655,7 +670,7 @@ public:
 
     /**
      * @param r Row of interest.
-     * @return An **igraph** vector containing the contents of the row.
+     * @return An **igraph** vector containing a copy of the row contents.
      */
     vector_type row_copy(size_type r) const {
         vector_type output(ncol());
@@ -681,7 +696,7 @@ public:
 
     /**
      * @param c Column of interest.
-     * @return An **igraph** vector containing the contents of the column.
+     * @return An **igraph** vector containing a copy of the column contents.
      */
     vector_type column_copy(size_type c) const {
         vector_type output(nrow());

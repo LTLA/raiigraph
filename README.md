@@ -31,10 +31,8 @@ All wrappers provide the usual RAII behavior, greatly simplifying memory managem
 
 ```cpp
 {
-    raiigraph::IntegerVector thing(50);
-    igraph_vector_int_t* raw_ptr = thing.get();
-    // ... Do something with igraph functions.
-
+    raiigraph::IntVector thing(50);
+    igraph_vector_int_size(thing); // can directly use the object with igraph.
 } // thing's memory is released when 'thing' goes out of scope.
 ``` 
 
@@ -45,9 +43,7 @@ raiigraph::Graph outside;
 
 {
     raiigraph::Graph inside(20, IGRAPH_UNDIRECTED);
-    igraph_t* raw_ptr = inside.get(); 
-    // do something with igraph functions.
-
+    igraph_graph_ecount(inside); // can directly use the object with igraph.
     outside = std::move(inside);
 }
 ```
@@ -58,15 +54,66 @@ Some of the wrappers also provide convenience methods to query the underlying da
 raiigraph::Graph example(20, IGRAPH_UNDIRECTED);
 example.ecount(); // number of edges
 example.vcount(); // number of vertices
-
-// Vector provides std::vector-like behavior.
-raiigraph::RealVector vec(50);
-thing[0] = 1;
-std::fill(thing.begin() + 2, thing.begin() + 5, 10);
-auto& last = thing.back();
 ```
 
 Check out the [reference documentation](https://ltla.github.io/raiigraph) for more details.
+
+## STL compatibility
+
+The `Vector` classes provide the same methods as `std::vector` and can be used as a drop-in replacement in various standard library functions:
+
+```cpp
+// Vector provides std::vector-like behavior.
+raiigraph::RealVector vec(10);
+thing[0] = 1;
+thing.push_back(5);
+std::fill(thing.begin() + 2, thing.begin() + 5, 10);
+std::sort(thing.begin(), thing.end());
+auto& last = thing.back();
+```
+
+The `Matrix` classes provide views into the rows and columns that have STL-like behavior.
+
+```cpp
+raiigraph::IntMatrix mat(10, 20);
+auto row_view = mat.row(5); // i.e., 5th row.
+row_view.size();
+row_view[2] = 5; // modifies the underlying matrix.
+row_view.back() = 10;
+std::sort(row_view.begin(), row_view.end());
+```
+
+## Controlling the RNG
+
+The `RNGScope` class allows users to easily set the **igraph** RNG for reproducible execution.
+This uses RAII to restore the previous RNG when the instance goes out of scope:
+
+```cpp
+{
+    RNGScope scope(10); // sets the RNG with seed of 10.
+    // use igraph functions that need the RNG.
+} // restores the previous RNG.
+```
+
+This class can be used in a nested manner for easy composition:
+
+```cpp
+void foo() {
+    RNGScope scope(20); // sets the RNG with seed of 20.
+    // use igraph functions that need the RNG.
+} // restores the previous RNG.
+
+{
+    RNGScope scope(10); // sets the RNG with seed of 10.
+
+    if (maybe_run) {
+        foo();
+    }
+
+    // use igraph functions that need the RNG, getting the same results
+    // regardless of whether foo() was called.
+} // restores the previous RNG.
+```
 
 ## Building projects
 
