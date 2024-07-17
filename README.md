@@ -18,7 +18,9 @@ Currently, we implement wrappers for the following **igraph** structures:
 | `igraph_vector_t`    | `raiigraph::RealVector` |
 | `igraph_vector_int_t` | `raiigraph::IntVector` |
 | `igraph_vector_bool_t` | `raiigraph::BoolVector` |
-| `igraph_matrix_int_t` | `raiigraph::IntegerMatrix` |
+| `igraph_matrix_t` | `raiigraph::RealMatrix` |
+| `igraph_matrix_int_t` | `raiigraph::IntMatrix` |
+| `igraph_matrix_bool_t` | `raiigraph::BoolMatrix` |
 | `igraph_t` | `raiigraph::Graph` |
 
 Please make a PR if your favorite structure is missing.
