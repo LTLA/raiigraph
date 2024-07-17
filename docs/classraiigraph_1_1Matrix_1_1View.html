@@ -83,7 +83,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>A <code><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a></code>-like view into a row/column of the matrix.  
+<p><a class="el" href="classraiigraph_1_1Matrix_1_1View.html" title="View into a row/column of the matrix.">View</a> into a row/column of the matrix.  
  <a href="classraiigraph_1_1Matrix_1_1View.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Matrix_8hpp_source.html">Matrix.hpp</a>&gt;</code></p>
@@ -91,7 +91,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html">Iterator</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random-access iterator through the row/column vector.  <a href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random-access iterator through the view.  <a href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">class</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a>&gt;<br />
 template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">typename</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">BaseIterator</a>, <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">typename</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">BaseReference</a>&gt;<br />
-class raiigraph::Matrix&lt; Ns_ &gt;::View&lt; BaseIterator, BaseReference &gt;</div><p>A <code><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a></code>-like view into a row/column of the matrix. </p>
+class raiigraph::Matrix&lt; Ns_ &gt;::View&lt; BaseIterator, BaseReference &gt;</div><p><a class="el" href="classraiigraph_1_1Matrix_1_1View.html" title="View into a row/column of the matrix.">View</a> into a row/column of the matrix. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">BaseIterator</td><td>Internal use only. </td></tr>
@@ -134,7 +134,7 @@ class raiigraph::Matrix&lt; Ns_ &gt;::View&lt; BaseIterator, BaseReference &gt;<
   </table>
   </dd>
 </dl>
-<p>Note that views are potentially invalidated by any re/deallocations in the parent <code><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a></code>. </p>
+<p>This provides an STL-like container around a row or column of the matrix for convenient access, modification and iteration. It avoids the need to copy data to/from the matrix and an external vector when interfacing with STL functions. Views should be treated like iterators in that they are potentially invalidated by any re/deallocations in the parent <code><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a></code>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab205a77f1afd60f25ed8a7c83cae84c9" name="ab205a77f1afd60f25ed8a7c83cae84c9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab205a77f1afd60f25ed8a7c83cae84c9">&#9670;&#160;</a></span>back()</h2>
@@ -162,7 +162,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reference to the last element in the row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the last element in the view. </dd></dl>
 
 </div>
 </div>
@@ -192,7 +192,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html" title="Random-access iterator through the row/column vector.">Iterator</a> to the start of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html" title="Random-access iterator through the view.">Iterator</a> to the start of this view. </dd></dl>
 
 </div>
 </div>
@@ -222,7 +222,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Const iterator to the start of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Const iterator to the start of this view. </dd></dl>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Const iterator to the end of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Const iterator to the end of this view. </dd></dl>
 
 </div>
 </div>
@@ -282,7 +282,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to the last element of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to the last element of this view. </dd></dl>
 
 </div>
 </div>
@@ -312,7 +312,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to a location before the start of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to a location before the start of this view. </dd></dl>
 
 </div>
 </div>
@@ -342,7 +342,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Whether the row vector is empty. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the view is empty. </dd></dl>
 
 </div>
 </div>
@@ -372,7 +372,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html" title="Random-access iterator through the row/column vector.">Iterator</a> to the end of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structraiigraph_1_1Matrix_1_1View_1_1Iterator.html" title="Random-access iterator through the view.">Iterator</a> to the end of this view. </dd></dl>
 
 </div>
 </div>
@@ -402,7 +402,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reference to the first element in the row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reference to the first element in the view. </dd></dl>
 
 </div>
 </div>
@@ -435,7 +435,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">i</td><td>Index on the row vector (i.e., the column). </td></tr>
+    <tr><td class="paramname">i</td><td>Index on the view (i.e., the column). </td></tr>
   </table>
   </dd>
 </dl>
@@ -469,7 +469,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to the last element of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to the last element of this view. </dd></dl>
 
 </div>
 </div>
@@ -499,7 +499,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to a location before the start of this row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Reverse const iterator to a location before the start of this view. </dd></dl>
 
 </div>
 </div>
@@ -529,7 +529,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Length of the row vector. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Length of the view. </dd></dl>
 
 </div>
 </div>

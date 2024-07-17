@@ -83,7 +83,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII semantics.  
+<p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII behavior.  
  <a href="classraiigraph_1_1Vector.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Vector_8hpp_source.html">Vector.hpp</a>&gt;</code></p>
@@ -222,13 +222,14 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae981906b4923b3c9d4749">class</a> <a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae981906b4923b3c9d4749">Ns_</a>&gt;<br />
-class raiigraph::Vector&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII semantics. </p>
+class raiigraph::Vector&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII behavior. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Ns_</td><td>Structure-based namespace with static methods, internal use only. </td></tr>
+    <tr><td class="paramname">Ns_</td><td>Structure-based namespace with static methods, internal use only.</td></tr>
   </table>
   </dd>
 </dl>
+<p>This class has ownership of the underlying <code>igraph_vector_*_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized vector. Users should not attempt to destroy the vector manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a></code> goes out of scope. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="af56943b4c8d1b478f67cf3be58551cc5" name="af56943b4c8d1b478f67cf3be58551cc5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af56943b4c8d1b478f67cf3be58551cc5">&#9670;&#160;</a></span>const_iterator</h2>
@@ -588,7 +589,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> to be copy-constructed from. This constructor will make a deep copy. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> to be copy-constructed from. This constructor will make a deep copy. </td></tr>
   </table>
   </dd>
 </dl>
@@ -622,7 +623,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1031,10 +1032,10 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Insert an element into the vector. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Construct and insert an element into the vector. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>Position at which to insert the new element. </td></tr>
-    <tr><td class="paramname">val</td><td>Value to be inserted. </td></tr>
+    <tr><td class="paramname">args</td><td>Arguments for the <code>value_type</code> constructor. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1069,9 +1070,9 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Add a new element to the end of the vector. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Construct and add a new element to the end of the vector. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>Value to be added. </td></tr>
+    <tr><td class="paramname">args</td><td>Arguments for the <code>value_type</code> constructor. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1624,7 +1625,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> to be copy-assigned from. This constructor will make a deep copy. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> to be copy-assigned from. This constructor will make a deep copy. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1658,7 +1659,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2071,7 +2072,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Vector.html#a1fc2777c14ae98190
 </div><div class="memdoc">
 <p>Swap two vectors, maintaining the validity of existing pointers to each vector and its elements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a> to be swapped. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> to be swapped. </td></tr>
   </table>
   </dd>
 </dl>

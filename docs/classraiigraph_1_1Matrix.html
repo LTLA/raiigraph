@@ -84,7 +84,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Wrapper around <code>igraph_matrix_*_t</code> objects with RAII semantics.  
+<p>Wrapper around <code>igraph_matrix_*_t</code> objects with RAII behavior.  
  <a href="classraiigraph_1_1Matrix.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Matrix_8hpp_source.html">Matrix.hpp</a>&gt;</code></p>
@@ -92,7 +92,7 @@ $(function() {
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix_1_1View.html">View</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A <code><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII semantics.">Vector</a></code>-like view into a row/column of the matrix.  <a href="classraiigraph_1_1Matrix_1_1View.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classraiigraph_1_1Matrix_1_1View.html" title="View into a row/column of the matrix.">View</a> into a row/column of the matrix.  <a href="classraiigraph_1_1Matrix_1_1View.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -117,6 +117,8 @@ Public Types</h2></td></tr>
 <tr class="separator:af91377f72803954a0af958fa27226ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03dc2fddf8edc6f8cfd7d8ee7ab1d0c4" id="r_a03dc2fddf8edc6f8cfd7d8ee7ab1d0c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">typedef</a> std::reverse_iterator&lt; <a class="el" href="classraiigraph_1_1Matrix.html#a960a4da52c38538a3ac8e656a1ceda76">const_iterator</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a03dc2fddf8edc6f8cfd7d8ee7ab1d0c4">reverse_const_iterator</a></td></tr>
 <tr class="separator:a03dc2fddf8edc6f8cfd7d8ee7ab1d0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94c47d74ba856cdc91199ff8794f11e0" id="r_a94c47d74ba856cdc91199ff8794f11e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">typedef</a> Ns_::vector_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a94c47d74ba856cdc91199ff8794f11e0">vector_type</a></td></tr>
+<tr class="separator:a94c47d74ba856cdc91199ff8794f11e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -202,10 +204,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aad16c2841bd78c501c5970dc3ebf950c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64945a413259a574aeb1bd9d6f6bb3e2" id="r_a64945a413259a574aeb1bd9d6f6bb3e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix_1_1View.html">View</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#a960a4da52c38538a3ac8e656a1ceda76">const_iterator</a>, <a class="el" href="classraiigraph_1_1Matrix.html#ab63c2b1e7096e0bdcb79483fd926b78e">const_reference</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a64945a413259a574aeb1bd9d6f6bb3e2">row</a> (<a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">r</a>) <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">const</a></td></tr>
 <tr class="separator:a64945a413259a574aeb1bd9d6f6bb3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e6ba52d9fd221199a891ab5e6e7c77f" id="r_a6e6ba52d9fd221199a891ab5e6e7c77f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix.html#a94c47d74ba856cdc91199ff8794f11e0">vector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a6e6ba52d9fd221199a891ab5e6e7c77f">row_copy</a> (<a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">r</a>) <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">const</a></td></tr>
+<tr class="separator:a6e6ba52d9fd221199a891ab5e6e7c77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a329170f75bc0d7f21604f9f2aa521281" id="r_a329170f75bc0d7f21604f9f2aa521281"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix_1_1View.html">View</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#a2fd8b57d7c735529aaaed72bf65c16db">iterator</a>, <a class="el" href="classraiigraph_1_1Matrix.html#a710817206ea3ab1f73892b926fe1593d">reference</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a329170f75bc0d7f21604f9f2aa521281">column</a> (<a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">c</a>)</td></tr>
 <tr class="separator:a329170f75bc0d7f21604f9f2aa521281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a9f617140efd3caf102e7e783c8bc9b" id="r_a6a9f617140efd3caf102e7e783c8bc9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix_1_1View.html">View</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#a960a4da52c38538a3ac8e656a1ceda76">const_iterator</a>, <a class="el" href="classraiigraph_1_1Matrix.html#ab63c2b1e7096e0bdcb79483fd926b78e">const_reference</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a6a9f617140efd3caf102e7e783c8bc9b">column</a> (<a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">c</a>) <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">const</a></td></tr>
 <tr class="separator:a6a9f617140efd3caf102e7e783c8bc9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c62f4b551e7f1180ec649a33e8d29e" id="r_a02c62f4b551e7f1180ec649a33e8d29e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Matrix.html#a94c47d74ba856cdc91199ff8794f11e0">vector_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a02c62f4b551e7f1180ec649a33e8d29e">column_copy</a> (<a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">c</a>) <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">const</a></td></tr>
+<tr class="separator:a02c62f4b551e7f1180ec649a33e8d29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08a76b293989a94b4d5d4f64edafe5bc" id="r_a08a76b293989a94b4d5d4f64edafe5bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a08a76b293989a94b4d5d4f64edafe5bc">operator igraph_type *</a> ()</td></tr>
 <tr class="separator:a08a76b293989a94b4d5d4f64edafe5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03c06723b8cee60402ac135592cc1e92" id="r_a03c06723b8cee60402ac135592cc1e92"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Matrix.html#a03c06723b8cee60402ac135592cc1e92">operator const igraph_type *</a> () <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">const</a></td></tr>
@@ -219,13 +225,14 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">class</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a>&gt;<br />
-class raiigraph::Matrix&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_matrix_*_t</code> objects with RAII semantics. </p>
+class raiigraph::Matrix&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_matrix_*_t</code> objects with RAII behavior. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">Ns_</td><td>Structure-based namespace with static methods, internal use only. </td></tr>
+    <tr><td class="paramname">Ns_</td><td>Structure-based namespace with static methods, internal use only.</td></tr>
   </table>
   </dd>
 </dl>
+<p>This class has ownership of the underlying <code>igraph_matrix_*_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized matrix. Users should not attempt to destroy the matrix manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a></code> goes out of scope. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a960a4da52c38538a3ac8e656a1ceda76" name="a960a4da52c38538a3ac8e656a1ceda76"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a960a4da52c38538a3ac8e656a1ceda76">&#9670;&#160;</a></span>const_iterator</h2>
@@ -397,6 +404,23 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 
 </div>
 </div>
+<a id="a94c47d74ba856cdc91199ff8794f11e0" name="a94c47d74ba856cdc91199ff8794f11e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94c47d74ba856cdc91199ff8794f11e0">&#9670;&#160;</a></span>vector_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">class</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">typedef</a> Ns_::vector_type <a class="el" href="classraiigraph_1_1Matrix.html">raiigraph::Matrix</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt;::vector_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The <b>raiigraph</b> vector class with the same <code>value_type</code> as this matrix. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a2ff20f0ec49c26431bb2a7f753bf2bec" name="a2ff20f0ec49c26431bb2a7f753bf2bec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2ff20f0ec49c26431bb2a7f753bf2bec">&#9670;&#160;</a></span>Matrix() <span class="overload">[1/5]</span></h2>
@@ -539,7 +563,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> to be copy-constructed from. This constructor will make a deep copy. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a> to be copy-constructed from. This constructor will make a deep copy. </td></tr>
   </table>
   </dd>
 </dl>
@@ -573,7 +597,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -895,11 +919,46 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">r</td><td>Column of interest. </td></tr>
+    <tr><td class="paramname">c</td><td>Column of interest. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A const view on the column. </dd></dl>
+
+</div>
+</div>
+<a id="a02c62f4b551e7f1180ec649a33e8d29e" name="a02c62f4b551e7f1180ec649a33e8d29e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02c62f4b551e7f1180ec649a33e8d29e">&#9670;&#160;</a></span>column_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">class</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classraiigraph_1_1Matrix.html#a94c47d74ba856cdc91199ff8794f11e0">vector_type</a> <a class="el" href="classraiigraph_1_1Matrix.html">raiigraph::Matrix</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt;::column_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>Column of interest. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An <b>igraph</b> vector containing a copy of the column contents. </dd></dl>
 
 </div>
 </div>
@@ -1470,7 +1529,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> to be copy-assigned from. This constructor will make a deep copy. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a> to be copy-assigned from. This constructor will make a deep copy. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1504,7 +1563,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1734,11 +1793,12 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Resize the matrix to the specified number of rows and columns. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Resize the matrix to the specified number of rows and columns. Existing values are preserved by considering the original and new matrices as 1-dimensional arrays in column-major order; the contents of the original matrix are simply copied into the first <code><a class="el" href="classraiigraph_1_1Matrix.html#a95d387fd5687b1cbd11759eee0a45971">size()</a></code> entries of the new matrix. An element <code>(i, j)</code> in the original matrix will only be present in the new matrix if <code>nc</code> is the same as the original <code><a class="el" href="classraiigraph_1_1Matrix.html#aa0bd1caf44827af627e27e659d4edf40">ncol()</a></code> (and <code>i &lt; nr</code>, of course).</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">nr</td><td>New number of rows. </td></tr>
-    <tr><td class="paramname">nr</td><td>New number of columns. </td></tr>
-    <tr><td class="paramname">val</td><td>Value to use to fill the new elements, if <code>size</code> is greater than the current size. </td></tr>
+    <tr><td class="paramname">nc</td><td>New number of columns. </td></tr>
+    <tr><td class="paramname">val</td><td>Value to use to fill the new elements, if <code>nr * nc</code> is greater than the current <code><a class="el" href="classraiigraph_1_1Matrix.html#a95d387fd5687b1cbd11759eee0a45971">size()</a></code>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1812,6 +1872,41 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A const view on the row. </dd></dl>
+
+</div>
+</div>
+<a id="a6e6ba52d9fd221199a891ab5e6e7c77f" name="a6e6ba52d9fd221199a891ab5e6e7c77f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e6ba52d9fd221199a891ab5e6e7c77f">&#9670;&#160;</a></span>row_copy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">class</a> <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classraiigraph_1_1Matrix.html#a94c47d74ba856cdc91199ff8794f11e0">vector_type</a> <a class="el" href="classraiigraph_1_1Matrix.html">raiigraph::Matrix</a>&lt; <a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0af958fa27226ca5">Ns_</a> &gt;::row_copy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classraiigraph_1_1Matrix.html#abb2fef9d859797526c9f3983ae43d239">size_type</a>&#160;</td>
+          <td class="paramname"><em>r</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Row of interest. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An <b>igraph</b> vector containing a copy of the row contents. </dd></dl>
 
 </div>
 </div>
@@ -1898,7 +1993,7 @@ template&lt;<a class="el" href="classraiigraph_1_1Matrix.html#af91377f72803954a0
 </div><div class="memdoc">
 <p>Swap two matrixs, maintaining the validity of existing pointers to each matrix and its elements. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII semantics.">Matrix</a> to be swapped. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a> to be swapped. </td></tr>
   </table>
   </dd>
 </dl>

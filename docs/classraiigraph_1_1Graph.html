@@ -82,7 +82,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Wrapper around the <code>igraph_t</code> class from <b>igraph</b>.  
+<p>Wrapper around <code>igraph_t</code> objects with RAII behavior.  
  <a href="classraiigraph_1_1Graph.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="Graph_8hpp_source.html">Graph.hpp</a>&gt;</code></p>
@@ -105,12 +105,34 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae8507c23dc12ac3dc90da8f10aecaadb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c4c4c4d05c373f13a129c349eb13b3b" id="r_a5c4c4c4d05c373f13a129c349eb13b3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classraiigraph_1_1Graph.html">Graph</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">operator=</a> (<a class="el" href="classraiigraph_1_1Graph.html">Graph</a> &amp;&amp;other)</td></tr>
 <tr class="separator:a5c4c4c4d05c373f13a129c349eb13b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d00471e7db7e02634c0d1fa256f33a" id="r_aa5d00471e7db7e02634c0d1fa256f33a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">~Graph</a> ()</td></tr>
+<tr class="separator:aa5d00471e7db7e02634c0d1fa256f33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7a20f9139b6af12b7fc63b106687d43" id="r_ad7a20f9139b6af12b7fc63b106687d43"><td class="memItemLeft" align="right" valign="top">igraph_integer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#ad7a20f9139b6af12b7fc63b106687d43">vcount</a> () const</td></tr>
 <tr class="separator:ad7a20f9139b6af12b7fc63b106687d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfb44e452cc8b51b0daeadc1ba66473f" id="r_adfb44e452cc8b51b0daeadc1ba66473f"><td class="memItemLeft" align="right" valign="top">igraph_integer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#adfb44e452cc8b51b0daeadc1ba66473f">ecount</a> () const</td></tr>
 <tr class="separator:adfb44e452cc8b51b0daeadc1ba66473f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20f81e4c7965a7e6f074408f81117a72" id="r_a20f81e4c7965a7e6f074408f81117a72"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceraiigraph.html#a09ab18d782a8dabaaeef5c6feac620a6">IntVector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">get_edgelist</a> (igraph_bool_t by_col=false) const</td></tr>
+<tr class="separator:a20f81e4c7965a7e6f074408f81117a72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9332805548e386f1068133cead41cda1" id="r_a9332805548e386f1068133cead41cda1"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">is_directed</a> () const</td></tr>
 <tr class="separator:a9332805548e386f1068133cead41cda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d7d96b8a77571816b78e48a97071d9" id="r_af9d7d96b8a77571816b78e48a97071d9"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">is_connected</a> (igraph_connectedness_t mode=IGRAPH_WEAK) const</td></tr>
+<tr class="separator:af9d7d96b8a77571816b78e48a97071d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4696910f1a31eff01da0e8bc06d63aa" id="r_ac4696910f1a31eff01da0e8bc06d63aa"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#ac4696910f1a31eff01da0e8bc06d63aa">is_simple</a> () const</td></tr>
+<tr class="separator:ac4696910f1a31eff01da0e8bc06d63aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a43dcd17e4f67f12e38fcbeaaaa3e67" id="r_a7a43dcd17e4f67f12e38fcbeaaaa3e67"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">has_loop</a> () const</td></tr>
+<tr class="separator:a7a43dcd17e4f67f12e38fcbeaaaa3e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa64afba04dc3aae19f5759efed39ac" id="r_adaa64afba04dc3aae19f5759efed39ac"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">has_multiple</a> () const</td></tr>
+<tr class="separator:adaa64afba04dc3aae19f5759efed39ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abed6977a7f7efd0e31dacac3c2fa5d87" id="r_abed6977a7f7efd0e31dacac3c2fa5d87"><td class="memItemLeft" align="right" valign="top">igraph_bool_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">has_mutual</a> (igraph_bool_t loops=false) const</td></tr>
+<tr class="separator:abed6977a7f7efd0e31dacac3c2fa5d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc26411c13af0d9397bc7affc0fc97b5" id="r_adc26411c13af0d9397bc7affc0fc97b5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">is_tree</a> (igraph_neimode_t mode=IGRAPH_ALL) const</td></tr>
+<tr class="separator:adc26411c13af0d9397bc7affc0fc97b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad959fdd9a7603dea77464ed9f67f6694" id="r_ad959fdd9a7603dea77464ed9f67f6694"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">is_forest</a> (igraph_neimode_t mode=IGRAPH_ALL) const</td></tr>
+<tr class="separator:ad959fdd9a7603dea77464ed9f67f6694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96f30d385d23b8b9cb83681060ce62dc" id="r_a96f30d385d23b8b9cb83681060ce62dc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">is_dag</a> () const</td></tr>
+<tr class="separator:a96f30d385d23b8b9cb83681060ce62dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7fa126f7c1c83599b2fb7e2964cf902" id="r_ad7fa126f7c1c83599b2fb7e2964cf902"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">is_acyclic</a> () const</td></tr>
+<tr class="separator:ad7fa126f7c1c83599b2fb7e2964cf902"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05a2b55d9f54978ce4012b23a823732e" id="r_a05a2b55d9f54978ce4012b23a823732e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a05a2b55d9f54978ce4012b23a823732e">operator igraph_t *</a> ()</td></tr>
 <tr class="separator:a05a2b55d9f54978ce4012b23a823732e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ea77a49f8942b17167f1d55a2297a01" id="r_a9ea77a49f8942b17167f1d55a2297a01"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Graph.html#a9ea77a49f8942b17167f1d55a2297a01">operator const igraph_t *</a> () const</td></tr>
@@ -121,7 +143,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a946e0131f97b9ac0d0fb274742cb4fce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Wrapper around the <code>igraph_t</code> class from <b>igraph</b>. </p>
+<div class="textblock"><p>Wrapper around <code>igraph_t</code> objects with RAII behavior. </p>
+<p>This class has ownership of the underlying <code>igraph_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized graph. Users should not attempt to destroy the graph manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a></code> goes out of scope. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3f64fd4af257f252c54f8e41e15629a9" name="a3f64fd4af257f252c54f8e41e15629a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f64fd4af257f252c54f8e41e15629a9">&#9670;&#160;</a></span>Graph() <span class="overload">[1/6]</span></h2>
@@ -156,7 +179,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an empty graph.</p>
+<p>Create an empty graph, i.e., with no edges.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">num_vertices</td><td>Number of vertices. </td></tr>
@@ -208,7 +231,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">edges</td><td>Edges between vertices, stored as a vector of non-negative vertex indices of length equal to twice the number of edges. The <code>i</code>-th edge is defined from the first vertex at <code>edges[2 * i]</code> to the second vertex at <code>edges[2 * i + 1]</code>. </td></tr>
+    <tr><td class="paramname">edges</td><td>Edges between vertices, stored as row-major matrix with two columns. Each row corresponds to an edge and contains its connected vertices. For example, the <code>i</code>-th edge is defined from the first vertex at <code>edges[2 * i]</code> to the second vertex at <code>edges[2 * i + 1]</code>. </td></tr>
     <tr><td class="paramname">num_vertices</td><td>Number of vertices in the graph. This should be greater than the largest index in <code>edges</code>. </td></tr>
     <tr><td class="paramname">directed</td><td>Whether the graph is directed. </td></tr>
   </table>
@@ -324,7 +347,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around the igraph_t class from igraph.">Graph</a> to be copy-constructed from. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a> to be copy-constructed from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -356,10 +379,36 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around the igraph_t class from igraph.">Graph</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a> to be move-constructed from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa5d00471e7db7e02634c0d1fa256f33a" name="aa5d00471e7db7e02634c0d1fa256f33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d00471e7db7e02634c0d1fa256f33a">&#9670;&#160;</a></span>~Graph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">raiigraph::Graph::~Graph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Destructor. </p>
 
 </div>
 </div>
@@ -442,6 +491,209 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a20f81e4c7965a7e6f074408f81117a72" name="a20f81e4c7965a7e6f074408f81117a72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20f81e4c7965a7e6f074408f81117a72">&#9670;&#160;</a></span>get_edgelist()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceraiigraph.html#a09ab18d782a8dabaaeef5c6feac620a6">IntVector</a> raiigraph::Graph::get_edgelist </td>
+          <td>(</td>
+          <td class="paramtype">igraph_bool_t&#160;</td>
+          <td class="paramname"><em>by_col</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">by_col</td><td>Whether to return the edges in a column-major array. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a> containing a matrix with two columns. Each row corresponds to an edge and contains its connected vertices. If <code>by_col = false</code>, this is the same as the sequence of edges used in the constructor. </dd></dl>
+
+</div>
+</div>
+<a id="a7a43dcd17e4f67f12e38fcbeaaaa3e67" name="a7a43dcd17e4f67f12e38fcbeaaaa3e67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a43dcd17e4f67f12e38fcbeaaaa3e67">&#9670;&#160;</a></span>has_loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">igraph_bool_t raiigraph::Graph::has_loop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph contains a loop edge, i.e., from a vertex to itself. </dd></dl>
+
+</div>
+</div>
+<a id="adaa64afba04dc3aae19f5759efed39ac" name="adaa64afba04dc3aae19f5759efed39ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adaa64afba04dc3aae19f5759efed39ac">&#9670;&#160;</a></span>has_multiple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">igraph_bool_t raiigraph::Graph::has_multiple </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph contains multiple edges between the same pair of vertices. </dd></dl>
+
+</div>
+</div>
+<a id="abed6977a7f7efd0e31dacac3c2fa5d87" name="abed6977a7f7efd0e31dacac3c2fa5d87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abed6977a7f7efd0e31dacac3c2fa5d87">&#9670;&#160;</a></span>has_mutual()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">igraph_bool_t raiigraph::Graph::has_mutual </td>
+          <td>(</td>
+          <td class="paramtype">igraph_bool_t&#160;</td>
+          <td class="paramname"><em>loops</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">loops</td><td>Whether to consider directed self-loops to be mutual. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the directed graph contains mutual edges, i.e., an edge from A to B and also an edge from B back to A. </dd></dl>
+
+</div>
+</div>
+<a id="ad7fa126f7c1c83599b2fb7e2964cf902" name="ad7fa126f7c1c83599b2fb7e2964cf902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7fa126f7c1c83599b2fb7e2964cf902">&#9670;&#160;</a></span>is_acyclic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool raiigraph::Graph::is_acyclic </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph is an acyclic graph. </dd></dl>
+
+</div>
+</div>
+<a id="af9d7d96b8a77571816b78e48a97071d9" name="af9d7d96b8a77571816b78e48a97071d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9d7d96b8a77571816b78e48a97071d9">&#9670;&#160;</a></span>is_connected()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">igraph_bool_t raiigraph::Graph::is_connected </td>
+          <td>(</td>
+          <td class="paramtype">igraph_connectedness_t&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>IGRAPH_WEAK</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The connectedness mode, for directed graphs. This can be either <code>IGRAPH_WEAK</code> or <code>IGRAPH_STRONG</code>. Ignored for undirected graphs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph is (weakly or strongly) connected. </dd></dl>
+
+</div>
+</div>
+<a id="a96f30d385d23b8b9cb83681060ce62dc" name="a96f30d385d23b8b9cb83681060ce62dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96f30d385d23b8b9cb83681060ce62dc">&#9670;&#160;</a></span>is_dag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool raiigraph::Graph::is_dag </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph is a directed acyclic graph. </dd></dl>
+
+</div>
+</div>
 <a id="a9332805548e386f1068133cead41cda1" name="a9332805548e386f1068133cead41cda1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9332805548e386f1068133cead41cda1">&#9670;&#160;</a></span>is_directed()</h2>
 
@@ -468,6 +720,98 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ad959fdd9a7603dea77464ed9f67f6694" name="ad959fdd9a7603dea77464ed9f67f6694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad959fdd9a7603dea77464ed9f67f6694">&#9670;&#160;</a></span>is_forest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool raiigraph::Graph::is_forest </td>
+          <td>(</td>
+          <td class="paramtype">igraph_neimode_t&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>IGRAPH_ALL</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Whether to test for an out-tree, an in-tree or to ignore edge directions, for directed graphs; see <code><a class="el" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">is_tree()</a></code>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether a graph is a forest, i.e., all connected components are trees. </dd></dl>
+
+</div>
+</div>
+<a id="ac4696910f1a31eff01da0e8bc06d63aa" name="ac4696910f1a31eff01da0e8bc06d63aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4696910f1a31eff01da0e8bc06d63aa">&#9670;&#160;</a></span>is_simple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">igraph_bool_t raiigraph::Graph::is_simple </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph is simple, i.e., no loops or multiple edges. </dd></dl>
+
+</div>
+</div>
+<a id="adc26411c13af0d9397bc7affc0fc97b5" name="adc26411c13af0d9397bc7affc0fc97b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc26411c13af0d9397bc7affc0fc97b5">&#9670;&#160;</a></span>is_tree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool raiigraph::Graph::is_tree </td>
+          <td>(</td>
+          <td class="paramtype">igraph_neimode_t&#160;</td>
+          <td class="paramname"><em>mode</em> = <code>IGRAPH_ALL</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>Whether to test for an out-tree, an in-tree or to ignore edge directions, for directed graphs. The respective possible values are <code>IGRAPH_OUT</code>, <code>IGRAPH_IN</code> and <code>IGRAPH_ALL</code>. Ignored for undirected graphs. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether the graph is a tree, i.e., connected with no cycles. </dd></dl>
+
+</div>
+</div>
 <a id="a9ea77a49f8942b17167f1d55a2297a01" name="a9ea77a49f8942b17167f1d55a2297a01"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ea77a49f8942b17167f1d55a2297a01">&#9670;&#160;</a></span>operator const igraph_t *()</h2>
 
@@ -490,7 +834,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Const pointer to the underlying <b>igraph</b> vector object. This is guaranteed to be non-NULL and initialized. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Const pointer to the underlying <b>igraph</b> graph object. This is guaranteed to be non-NULL and initialized. </dd></dl>
 
 </div>
 </div>
@@ -516,7 +860,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the underlying <b>igraph</b> vector object. This is guaranteed to be non-NULL and initialized. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the underlying <b>igraph</b> graph object. This is guaranteed to be non-NULL and initialized. </dd></dl>
 
 </div>
 </div>
@@ -545,7 +889,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around the igraph_t class from igraph.">Graph</a> to be copy-assigned from. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a> to be copy-assigned from. </td></tr>
   </table>
   </dd>
 </dl>
@@ -577,7 +921,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around the igraph_t class from igraph.">Graph</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a> to be move-assigned from. This constructor will leave <code>other</code> in a valid but unspecified state. </td></tr>
   </table>
   </dd>
 </dl>

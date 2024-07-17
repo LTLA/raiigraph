@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>raiigraph: raiigraph/raiigraph.hpp File Reference</title>
+<title>raiigraph: raiigraph/Vector.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,28 +76,46 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
-  <div class="headertitle"><div class="title">raiigraph.hpp File Reference</div></div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
+  <div class="headertitle"><div class="title">Vector.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Utilities for manipulating <b>igraph</b> data structures in C++.  
+<p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII behavior.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="RNGScope_8hpp_source.html">RNGScope.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Vector_8hpp_source.html">Vector.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Matrix_8hpp_source.html">Matrix.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="Graph_8hpp_source.html">Graph.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;igraph.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="error_8hpp_source.html">error.hpp</a>&quot;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
+<code>#include &lt;initializer_list&gt;</code><br />
+<code>#include &lt;iterator&gt;</code><br />
 </div>
-<p><a href="raiigraph_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="Vector_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classraiigraph_1_1Vector.html">raiigraph::Vector&lt; Ns_ &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper around <code>igraph_vector_*_t</code> objects with RAII behavior.  <a href="classraiigraph_1_1Vector.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespaceraiigraph" id="r_namespaceraiigraph"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html">raiigraph</a></td></tr>
 <tr class="memdesc:namespaceraiigraph"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilities for manipulating <b>igraph</b> data structures in C++. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a09ab18d782a8dabaaeef5c6feac620a6" id="r_a09ab18d782a8dabaaeef5c6feac620a6"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Vector.html">Vector</a>&lt; internal::Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#a09ab18d782a8dabaaeef5c6feac620a6">raiigraph::IntVector</a></td></tr>
+<tr class="separator:a09ab18d782a8dabaaeef5c6feac620a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a539689f82bdaf4c085eb1ad8ac9613bd" id="r_a539689f82bdaf4c085eb1ad8ac9613bd"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Vector.html">Vector</a>&lt; internal::Real &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#a539689f82bdaf4c085eb1ad8ac9613bd">raiigraph::RealVector</a></td></tr>
+<tr class="separator:a539689f82bdaf4c085eb1ad8ac9613bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfa51717233f485aac788c1972c9d949" id="r_abfa51717233f485aac788c1972c9d949"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classraiigraph_1_1Vector.html">Vector</a>&lt; internal::Bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceraiigraph.html#abfa51717233f485aac788c1972c9d949">raiigraph::BoolVector</a></td></tr>
+<tr class="separator:abfa51717233f485aac788c1972c9d949"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Utilities for manipulating <b>igraph</b> data structures in C++. </p>
+<div class="textblock"><p>Wrapper around <code>igraph_vector_*_t</code> objects with RAII behavior. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
