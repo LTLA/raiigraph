@@ -80,4 +80,32 @@ TEST(Graph, Coercion) {
     EXPECT_EQ(cref.get(), static_cast<const igraph_t*>(cref));
 }
 
+TEST(Graph, Methods) {
+    raiigraph::IntVector edges;
+    edges.push_back(0);
+    edges.push_back(1);
+    edges.push_back(1);
+    edges.push_back(3);
+    edges.push_back(0);
+    edges.push_back(2);
 
+    raiigraph::Graph graph(edges, 4, IGRAPH_DIRECTED);
+
+    // Basic checks for graph capabilities.
+    EXPECT_TRUE(graph.is_connected());
+    EXPECT_TRUE(graph.is_simple());
+    EXPECT_FALSE(graph.has_loop());
+    EXPECT_FALSE(graph.has_multiple());
+    EXPECT_FALSE(graph.has_mutual());
+    EXPECT_TRUE(graph.is_tree());
+    EXPECT_TRUE(graph.is_forest());
+    EXPECT_TRUE(graph.is_dag());
+    EXPECT_TRUE(graph.is_acyclic());
+
+    // We can recover the edge list.
+    auto edges2 = graph.get_edgelist();
+    EXPECT_EQ(edges2.size(), 6);
+    EXPECT_EQ(edges2.front(), 0);
+    EXPECT_EQ(edges2[3], 3);
+    EXPECT_EQ(edges2.back(), 2);
+}

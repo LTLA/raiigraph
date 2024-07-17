@@ -3,6 +3,7 @@
 
 #include "igraph.h"
 #include "Vector.hpp"
+#include "error.hpp"
 
 /**
  * @file raiigraph.hpp
@@ -125,10 +126,112 @@ public:
     }
 
     /**
+     * @param by_col Whether to return the edges in a column-major array.
+     * @return Vector containing a matrix with two columns.
+     * Each row corresponds to an edge and contains its connected vertices.
+     * If `by_col = false`, this is the same as the sequence of edges used in the constructor.
+     */
+    IntVector get_edgelist(igraph_bool_t by_col = false) const {
+        IntVector out(ecount());
+        check_code(igraph_get_edgelist(&my_graph, out.get(), by_col));
+        return out;
+    }
+
+public:
+    /**
      * @return Whether the graph is directed.
      */
     igraph_bool_t is_directed() const {
         return igraph_is_directed(&my_graph);
+    }
+
+    /**
+     * @param mode The connectedness mode, for directed graphs.
+     * This can be either `IGRAPH_WEAK` or `IGRAPH_STRONG`.
+     * Ignored for undirected graphs.
+     * @return Whether the graph is (weakly or strongly) connected.
+     */
+    igraph_bool_t is_connected(igraph_connectedness_t mode = IGRAPH_WEAK) const {
+        igraph_bool_t res;
+        check_code(igraph_is_connected(&my_graph, &res, mode));
+        return res;
+    }
+
+    /**
+     * @return Whether the graph is simple, i.e., no loops or multiple edges.
+     */
+    igraph_bool_t is_simple() const {
+        igraph_bool_t res;
+        check_code(igraph_is_simple(&my_graph, &res));
+        return res;
+    }
+
+    /**
+     * @return Whether the graph contains a loop edge, i.e., from a vertex to itself.
+     */
+    igraph_bool_t has_loop() const {
+        igraph_bool_t res;
+        check_code(igraph_has_loop(&my_graph, &res));
+        return res;
+    }
+
+    /**
+     * @return Whether the graph contains multiple edges between the same pair of vertices.
+     */
+    igraph_bool_t has_multiple() const {
+        igraph_bool_t res;
+        check_code(igraph_has_multiple(&my_graph, &res));
+        return res;
+    }
+
+    /**
+     * @param loops Whether to consider directed self-loops to be mutual.
+     * @return Whether the directed graph contains mutual edges, i.e., an edge from A to B and also an edge from B back to A.
+     */
+    igraph_bool_t has_mutual(igraph_bool_t loops = false) const {
+        igraph_bool_t res;
+        check_code(igraph_has_mutual(&my_graph, &res, loops));
+        return res;
+    }
+
+    /**
+     * @param mode Whether to test for an out-tree, an in-tree or to ignore edge directions, for directed graphs.
+     * The respective possible values are `IGRAPH_OUT`, `IGRAPH_IN` and `IGRAPH_ALL`.
+     * Ignored for undirected graphs.
+     * @return Whether the graph is a tree, i.e., connected with no cycles.
+     */
+    bool is_tree(igraph_neimode_t mode = IGRAPH_ALL) const {
+        igraph_bool_t res;
+        check_code(igraph_is_tree(&my_graph, &res, NULL, mode));
+        return res;
+    }
+
+    /**
+     * @param mode Whether to test for an out-tree, an in-tree or to ignore edge directions, for directed graphs; see `is_tree()`.
+     * @return Whether a graph is a forest, i.e., all connected components are trees.
+     */
+    bool is_forest(igraph_neimode_t mode = IGRAPH_ALL) const {
+        igraph_bool_t res;
+        check_code(igraph_is_forest(&my_graph, &res, NULL, mode));
+        return res;
+    }
+
+    /**
+     * @return Whether the graph is a directed acyclic graph.
+     */
+    bool is_dag() const {
+        igraph_bool_t res;
+        check_code(igraph_is_dag(&my_graph, &res));
+        return res;
+    }
+
+    /**
+     * @return Whether the graph is an acyclic graph.
+     */
+    bool is_acyclic() const {
+        igraph_bool_t res;
+        check_code(igraph_is_acyclic(&my_graph, &res));
+        return res;
     }
 
 public:
