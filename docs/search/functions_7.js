@@ -7,6 +7,6 @@ var searchData=
   ['is_5fdag_4',['is_dag',['../classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc',1,'raiigraph::Graph']]],
   ['is_5fdirected_5',['is_directed',['../classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1',1,'raiigraph::Graph']]],
   ['is_5fforest_6',['is_forest',['../classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694',1,'raiigraph::Graph']]],
-  ['is_5fsimple_7',['is_simple',['../classraiigraph_1_1Graph.html#ac4696910f1a31eff01da0e8bc06d63aa',1,'raiigraph::Graph']]],
+  ['is_5fsimple_7',['is_simple',['../classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010',1,'raiigraph::Graph']]],
   ['is_5ftree_8',['is_tree',['../classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5',1,'raiigraph::Graph']]]
 ];

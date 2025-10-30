@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ecount_0',['ecount',['../classraiigraph_1_1Graph.html#adfb44e452cc8b51b0daeadc1ba66473f',1,'raiigraph::Graph']]],
+  ['ecount_0',['ecount',['../classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a',1,'raiigraph::Graph']]],
   ['emplace_1',['emplace',['../classraiigraph_1_1Vector.html#a2309257c40d7b4983e3b59a3c8066c00',1,'raiigraph::Vector']]],
   ['emplace_5fback_2',['emplace_back',['../classraiigraph_1_1Vector.html#a9441d9e29fd81cd31af31b0087c8e54b',1,'raiigraph::Vector']]],
   ['empty_3',['empty',['../classraiigraph_1_1Matrix.html#a3006ab928fffe15862502fc6cc247180',1,'raiigraph::Matrix::empty()'],['../classraiigraph_1_1Matrix_1_1View.html#a28bd3447beede66bd996b56dcdc089b3',1,'raiigraph::Matrix::View::empty()'],['../classraiigraph_1_1Vector.html#a614a5bf1ab5e36bb6ce4521bc9dc7118',1,'raiigraph::Vector::empty()']]],
