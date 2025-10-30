@@ -25,7 +25,7 @@ namespace raiigraph {
 template<class Ns_>
 class Matrix {
 private:
-    void setup(igraph_integer_t nr, igraph_integer_t nc) {
+    void setup(igraph_int_t nr, igraph_int_t nc) {
         if (Ns_::init(&my_matrix, nr, nc)) {
             throw std::runtime_error("failed to initialize igraph matrix of dimensions " + std::to_string(nr) + " x " + std::to_string(nc));
         }
@@ -55,12 +55,12 @@ public:
     /**
      * Integer type for the size of the matrix.
      */
-    typedef igraph_integer_t size_type;
+    typedef igraph_int_t size_type;
 
     /**
      * Integer type for differences in positions within the matrix.
      */
-    typedef igraph_integer_t difference_type;
+    typedef igraph_int_t difference_type;
 
     /**
      * Iterator for the matrix contents. 
@@ -485,7 +485,7 @@ public:
             using iterator_category = std::random_access_iterator_tag;
             typedef typename Ns_::value_type value_type;
             typedef decltype(&std::declval<BaseReference>()) pointer;
-            typedef igraph_integer_t difference_type;
+            typedef igraph_int_t difference_type;
             typedef BaseReference reference;
 
         public:
@@ -757,7 +757,7 @@ private:
 namespace matrix_internal {
 
 struct Integer {
-    typedef igraph_integer_t value_type;
+    typedef igraph_int_t value_type;
     typedef igraph_matrix_int_t igraph_type;
     typedef IntVector vector_type;
 

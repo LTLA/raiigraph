@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(raiigraph
-    VERSION 1.1.1
+    VERSION 1.2.0
     DESCRIPTION "Wrappers for igraph data structures in C++"
     LANGUAGES CXX)
 
@@ -20,7 +20,7 @@ target_compile_features(raiigraph INTERFACE cxx_std_17)
 # Dependencies
 option(RAIIGRAPH_FIND_IGRAPH "Search for the igraph package." ON)
 if(RAIIGRAPH_FIND_IGRAPH)
-    find_package(igraph 0.10.0 CONFIG)
+    find_package(igraph 1.0.0 CONFIG)
     if (igraph_FOUND)
         target_link_libraries(raiigraph INTERFACE igraph::igraph)
     endif()
