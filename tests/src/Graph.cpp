@@ -1,7 +1,6 @@
 #include <gtest/gtest.h>
 
 #include "raiigraph/Graph.hpp"
-#include "raiigraph/initialize.hpp"
 #include <random>
 
 TEST(Graph, Basic) {
