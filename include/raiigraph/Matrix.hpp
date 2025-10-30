@@ -23,12 +23,13 @@ namespace raiigraph {
  * This class has ownership of the underlying `igraph_matrix_*_t` object, handling both its initialization and destruction.
  * Users should only pass instances of this class to **igraph** functions that accept an already-initialized matrix.
  * Users should not attempt to destroy the matrix manually as this is done automatically when the `Matrix` goes out of scope.
+ *
+ * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
  */
 template<class Ns_>
 class Matrix {
 private:
     void setup(igraph_int_t nr, igraph_int_t nc) {
-        initialize();
         if (Ns_::init(&my_matrix, nr, nc)) {
             throw std::runtime_error("failed to initialize igraph matrix of dimensions " + std::to_string(nr) + " x " + std::to_string(nc));
         }
@@ -111,9 +112,7 @@ public:
     /**
      * @param matrix An initialized matrix to take ownership of.
      */
-    Matrix(igraph_type&& matrix) : my_matrix(std::move(matrix)) {
-        initialize();
-    }
+    Matrix(igraph_type&& matrix) : my_matrix(std::move(matrix)) {}
 
 public:
     /**

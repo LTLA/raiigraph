@@ -5,7 +5,7 @@
 #include <random>
 
 TEST(Graph, Basic) {
-    raiigraph::initialize();
+    igraph_setup();
 
     std::mt19937_64 rng(42);
     std::normal_distribution distr;
@@ -75,7 +75,7 @@ TEST(Graph, Basic) {
 }
 
 TEST(Graph, Coercion) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::Graph tmp;
     EXPECT_EQ(tmp.get(), static_cast<igraph_t*>(tmp));
@@ -85,7 +85,7 @@ TEST(Graph, Coercion) {
 }
 
 TEST(Graph, Methods) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntVector edges;
     edges.push_back(0);

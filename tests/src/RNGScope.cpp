@@ -3,7 +3,7 @@
 #include "raiigraph/RNGScope.hpp"
 
 TEST(RNGScope, Basic) {
-    raiigraph::initialize();
+    igraph_setup();
 
     int first, second;
     {

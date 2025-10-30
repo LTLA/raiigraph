@@ -23,12 +23,13 @@ namespace raiigraph {
  * This class has ownership of the underlying `igraph_vector_*_t` object, handling both its initialization and destruction.
  * Users should only pass instances of this class to **igraph** functions that accept an already-initialized vector.
  * Users should not attempt to destroy the vector manually as this is done automatically when the `Vector` goes out of scope.
+ *
+ * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
  */
 template<class Ns_>
 class Vector {
 private:
     void setup(igraph_int_t size) {
-        initialize();
         if (Ns_::init(&my_vector, size)) {
             throw std::runtime_error("failed to initialize igraph vector of size " + std::to_string(size));
         }
@@ -103,9 +104,7 @@ public:
     /**
      * @param vector An initialized vector to take ownership of.
      */
-    Vector(igraph_type&& vector) : my_vector(std::move(vector)) {
-        initialize();
-    }
+    Vector(igraph_type&& vector) : my_vector(std::move(vector)) {}
 
     /**
      * @tparam InputIterator Iterator type that supports forward increments and subtraction.

@@ -4,7 +4,7 @@
 #include <random>
 
 TEST(Matrix, Construction) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntMatrix empty;
     EXPECT_TRUE(empty.empty());
@@ -77,7 +77,7 @@ TEST(Matrix, Construction) {
 }
 
 TEST(Matrix, Resize) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntMatrix contents(10, 10);
     contents.clear();
@@ -95,7 +95,7 @@ TEST(Matrix, Resize) {
 }
 
 TEST(Matrix, Access1D) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -153,7 +153,7 @@ TEST(Matrix, Access1D) {
 }
 
 TEST(Matrix, Access2D) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -176,7 +176,7 @@ TEST(Matrix, Access2D) {
 }
 
 TEST(Matrix, AccessRow) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -285,7 +285,7 @@ TEST(Matrix, AccessRow) {
 }
 
 TEST(Matrix, AccessColumn) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -326,7 +326,7 @@ TEST(Matrix, AccessColumn) {
 }
 
 TEST(Matrix, Coercion) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 10);
     EXPECT_EQ(contents.get(), static_cast<igraph_matrix_int_t*>(contents));
@@ -336,7 +336,7 @@ TEST(Matrix, Coercion) {
 }
 
 TEST(Matrix, Swap) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerMatrix contents(10, 10);
     raiigraph::IntegerMatrix contents2(5, 5, 1);
@@ -349,7 +349,7 @@ TEST(Matrix, Swap) {
 }
 
 TEST(Matrix, OtherTypes) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::BoolMatrix bcontents(1, 1, 0);
     EXPECT_FALSE(bcontents.front());

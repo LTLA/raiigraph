@@ -4,7 +4,7 @@
 #include <random>
 
 TEST(Vector, Construction) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerVector empty;
     EXPECT_TRUE(empty.empty());
@@ -81,7 +81,7 @@ TEST(Vector, Construction) {
 }
 
 TEST(Vector, Access) {
-    raiigraph::initialize();
+    igraph_setup();
 
     std::vector<int> foo{ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     raiigraph::IntegerVector contents(foo.begin(), foo.end());
@@ -138,7 +138,7 @@ TEST(Vector, Access) {
 }
 
 TEST(Vector, Resizing) {
-    raiigraph::initialize();
+    igraph_setup();
 
     {
         raiigraph::IntegerVector contents(10);
@@ -242,7 +242,7 @@ TEST(Vector, Resizing) {
 }
 
 TEST(Vector, Coercion) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerVector contents(10);
     EXPECT_EQ(contents.get(), static_cast<igraph_vector_int_t*>(contents));
@@ -252,7 +252,7 @@ TEST(Vector, Coercion) {
 }
 
 TEST(Vector, Swap) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::IntegerVector contents(10);
     raiigraph::IntegerVector contents2(5, 1);
@@ -265,7 +265,7 @@ TEST(Vector, Swap) {
 }
 
 TEST(Vector, OtherTypes) {
-    raiigraph::initialize();
+    igraph_setup();
 
     raiigraph::BoolVector bcontents(1, 0);
     EXPECT_FALSE(bcontents.front());
