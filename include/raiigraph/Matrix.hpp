@@ -4,7 +4,6 @@
 #include "igraph.h"
 #include "error.hpp"
 #include "Vector.hpp"
-#include "initialize.hpp"
 
 #include <algorithm>
 #include <iterator>

@@ -3,7 +3,6 @@
 
 #include "igraph.h"
 #include "error.hpp"
-#include "initialize.hpp"
 
 /**
  * @file RNGScope.hpp

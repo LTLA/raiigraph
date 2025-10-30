@@ -5,7 +5,6 @@
 #include "Vector.hpp"
 #include "Matrix.hpp"
 #include "Graph.hpp"
-#include "initialize.hpp"
 
 /**
  * @file raiigraph.hpp

@@ -4,7 +4,6 @@
 #include "igraph.h"
 #include "Vector.hpp"
 #include "error.hpp"
-#include "initialize.hpp"
 
 /**
  * @file Graph.hpp
