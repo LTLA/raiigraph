@@ -3,6 +3,8 @@
 #include "raiigraph/RNGScope.hpp"
 
 TEST(RNGScope, Basic) {
+    raiigraph::initialize();
+
     int first, second;
     {
         raiigraph::RNGScope scope(10);

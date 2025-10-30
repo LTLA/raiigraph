@@ -3,6 +3,7 @@
 
 #include "igraph.h"
 #include "error.hpp"
+#include "initialize.hpp"
 
 /**
  * @file RNGScope.hpp
@@ -33,6 +34,7 @@ public:
      * @param type Pointer to the RNG type.
      */
     RNGScope(igraph_uint_t seed, const igraph_rng_type_t* type) {
+        initialize();
         check_code(igraph_rng_init(&current, type));
 
         auto errcode = igraph_rng_seed(&current, seed);
@@ -41,8 +43,7 @@ public:
             throw IgraphError(errcode);
         }
 
-        previous = *(igraph_rng_default());
-        igraph_rng_set_default(&current);
+        previous = igraph_rng_set_default(&current);
     }
 
     /**
@@ -51,9 +52,9 @@ public:
      * @param type Pointer to the RNG type.
      */
     RNGScope(const igraph_rng_type_t* type) {
+        initialize();
         check_code(igraph_rng_init(&current, type));
-        previous = *(igraph_rng_default());
-        igraph_rng_set_default(&current);
+        previous = igraph_rng_set_default(&current);
     }
 
     /**
@@ -72,7 +73,7 @@ public:
     RNGScope& operator=(RNGScope&&) = delete;
 
     ~RNGScope() {
-        igraph_rng_set_default(&previous);
+        igraph_rng_set_default(previous);
         igraph_rng_destroy(&current);
     }
     /**
@@ -80,7 +81,7 @@ public:
      */
 
 private:
-    igraph_rng_t previous;
+    igraph_rng_t* previous;
     igraph_rng_t current;
 };
 

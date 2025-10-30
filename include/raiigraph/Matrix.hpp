@@ -4,6 +4,8 @@
 #include "igraph.h"
 #include "error.hpp"
 #include "Vector.hpp"
+#include "initialize.hpp"
+
 #include <algorithm>
 #include <iterator>
 
@@ -26,6 +28,7 @@ template<class Ns_>
 class Matrix {
 private:
     void setup(igraph_int_t nr, igraph_int_t nc) {
+        initialize();
         if (Ns_::init(&my_matrix, nr, nc)) {
             throw std::runtime_error("failed to initialize igraph matrix of dimensions " + std::to_string(nr) + " x " + std::to_string(nc));
         }
@@ -108,7 +111,9 @@ public:
     /**
      * @param matrix An initialized matrix to take ownership of.
      */
-    Matrix(igraph_type&& matrix) : my_matrix(std::move(matrix)) {}
+    Matrix(igraph_type&& matrix) : my_matrix(std::move(matrix)) {
+        initialize();
+    }
 
 public:
     /**

@@ -4,6 +4,7 @@
 #include "igraph.h"
 #include "Vector.hpp"
 #include "error.hpp"
+#include "initialize.hpp"
 
 /**
  * @file Graph.hpp
@@ -22,6 +23,7 @@ namespace raiigraph {
 class Graph {
 private:
     void setup(igraph_int_t num_vertices, igraph_bool_t directed) {
+        initialize();
         if (igraph_empty(&my_graph, num_vertices, directed)) {
             throw std::runtime_error("failed to initialize an empty igraph graph object"); 
         } 
@@ -56,6 +58,7 @@ public:
      * @param directed Whether the graph is directed.
      */
     Graph(const igraph_vector_int_t* edges, igraph_int_t num_vertices, igraph_bool_t directed) { 
+        initialize();
         if (igraph_create(&my_graph, edges, num_vertices, directed)) {
             throw std::runtime_error("failed to initialize an igraph graph object"); 
         }
@@ -64,8 +67,11 @@ public:
     /**
      * @param graph An initialized graph to take ownership of.
      */
-    Graph(igraph_t&& graph) : my_graph(std::move(graph)) {}
+    Graph(igraph_t&& graph) : my_graph(std::move(graph)) {
+        initialize();
+    }
 
+public:
     /**
      * @param other Graph to be copy-constructed from.
      */

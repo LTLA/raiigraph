@@ -3,6 +3,8 @@
 
 #include "igraph.h"
 #include "error.hpp"
+#include "initialize.hpp"
+
 #include <algorithm>
 #include <initializer_list>
 #include <iterator>
@@ -26,6 +28,7 @@ template<class Ns_>
 class Vector {
 private:
     void setup(igraph_int_t size) {
+        initialize();
         if (Ns_::init(&my_vector, size)) {
             throw std::runtime_error("failed to initialize igraph vector of size " + std::to_string(size));
         }
@@ -100,7 +103,9 @@ public:
     /**
      * @param vector An initialized vector to take ownership of.
      */
-    Vector(igraph_type&& vector) : my_vector(std::move(vector)) {}
+    Vector(igraph_type&& vector) : my_vector(std::move(vector)) {
+        initialize();
+    }
 
     /**
      * @tparam InputIterator Iterator type that supports forward increments and subtraction.

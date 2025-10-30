@@ -1,9 +1,12 @@
 #include <gtest/gtest.h>
 
 #include "raiigraph/Graph.hpp"
+#include "raiigraph/initialize.hpp"
 #include <random>
 
 TEST(Graph, Basic) {
+    raiigraph::initialize();
+
     std::mt19937_64 rng(42);
     std::normal_distribution distr;
     std::uniform_real_distribution distu;
@@ -72,6 +75,8 @@ TEST(Graph, Basic) {
 }
 
 TEST(Graph, Coercion) {
+    raiigraph::initialize();
+
     raiigraph::Graph tmp;
     EXPECT_EQ(tmp.get(), static_cast<igraph_t*>(tmp));
 
@@ -80,6 +85,8 @@ TEST(Graph, Coercion) {
 }
 
 TEST(Graph, Methods) {
+    raiigraph::initialize();
+
     raiigraph::IntVector edges;
     edges.push_back(0);
     edges.push_back(1);
