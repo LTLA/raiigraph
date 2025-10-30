@@ -4,6 +4,8 @@
 #include <random>
 
 TEST(Matrix, Construction) {
+    igraph_setup();
+
     raiigraph::IntMatrix empty;
     EXPECT_TRUE(empty.empty());
     EXPECT_EQ(empty.nrow(), 0);
@@ -75,6 +77,8 @@ TEST(Matrix, Construction) {
 }
 
 TEST(Matrix, Resize) {
+    igraph_setup();
+
     raiigraph::IntMatrix contents(10, 10);
     contents.clear();
     EXPECT_TRUE(contents.empty());
@@ -91,6 +95,8 @@ TEST(Matrix, Resize) {
 }
 
 TEST(Matrix, Access1D) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
 
@@ -147,6 +153,8 @@ TEST(Matrix, Access1D) {
 }
 
 TEST(Matrix, Access2D) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
 
@@ -168,6 +176,8 @@ TEST(Matrix, Access2D) {
 }
 
 TEST(Matrix, AccessRow) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
     const auto& const_contents = contents;
@@ -275,6 +285,8 @@ TEST(Matrix, AccessRow) {
 }
 
 TEST(Matrix, AccessColumn) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
     const auto& const_contents = contents;
@@ -314,6 +326,8 @@ TEST(Matrix, AccessColumn) {
 }
 
 TEST(Matrix, Coercion) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 10);
     EXPECT_EQ(contents.get(), static_cast<igraph_matrix_int_t*>(contents));
 
@@ -322,6 +336,8 @@ TEST(Matrix, Coercion) {
 }
 
 TEST(Matrix, Swap) {
+    igraph_setup();
+
     raiigraph::IntegerMatrix contents(10, 10);
     raiigraph::IntegerMatrix contents2(5, 5, 1);
 
@@ -333,6 +349,8 @@ TEST(Matrix, Swap) {
 }
 
 TEST(Matrix, OtherTypes) {
+    igraph_setup();
+
     raiigraph::BoolMatrix bcontents(1, 1, 0);
     EXPECT_FALSE(bcontents.front());
 

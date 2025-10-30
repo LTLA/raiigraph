@@ -30,6 +30,10 @@ Please make a PR if your favorite structure is missing.
 All wrappers provide the usual RAII behavior, greatly simplifying memory management when used in existing code.
 
 ```cpp
+#include "raiigraph/raiigraph.hpp"
+
+igraph_setup(); // call this before using any igraph functions.
+
 {
     raiigraph::IntVector thing(50);
     igraph_vector_int_size(thing); // can directly use the object with igraph.

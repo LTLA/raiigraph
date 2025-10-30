@@ -3,6 +3,7 @@
 
 #include "igraph.h"
 #include "error.hpp"
+
 #include <algorithm>
 #include <initializer_list>
 #include <iterator>
@@ -21,11 +22,13 @@ namespace raiigraph {
  * This class has ownership of the underlying `igraph_vector_*_t` object, handling both its initialization and destruction.
  * Users should only pass instances of this class to **igraph** functions that accept an already-initialized vector.
  * Users should not attempt to destroy the vector manually as this is done automatically when the `Vector` goes out of scope.
+ *
+ * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
  */
 template<class Ns_>
 class Vector {
 private:
-    void setup(igraph_integer_t size) {
+    void setup(igraph_int_t size) {
         if (Ns_::init(&my_vector, size)) {
             throw std::runtime_error("failed to initialize igraph vector of size " + std::to_string(size));
         }
@@ -55,12 +58,12 @@ public:
     /**
      * Integer type for the size of the vector.
      */
-    typedef igraph_integer_t size_type;
+    typedef igraph_int_t size_type;
 
     /**
      * Integer type for differences in positions within the vector.
      */
-    typedef igraph_integer_t difference_type;
+    typedef igraph_int_t difference_type;
 
     /**
      * Iterator for the vector contents. 
@@ -338,7 +341,7 @@ public:
      * @param i Index on the vector.
      * @return Reference to the value at `i`.
      */
-    reference operator[](igraph_integer_t i) {
+    reference operator[](igraph_int_t i) {
         return *(begin() + i);
     }
 
@@ -346,7 +349,7 @@ public:
      * @param i Index on the vector.
      * @return Const reference to the value at `i`.
      */
-    const_reference operator[](igraph_integer_t i) const {
+    const_reference operator[](igraph_int_t i) const {
         return *(begin() + i);
     }
 
@@ -531,7 +534,7 @@ private:
 namespace internal {
 
 struct Integer {
-    typedef igraph_integer_t value_type;
+    typedef igraph_int_t value_type;
     typedef igraph_vector_int_t igraph_type;
 
 #define RAIIGRAPH_VECTOR_SUFFIX _int

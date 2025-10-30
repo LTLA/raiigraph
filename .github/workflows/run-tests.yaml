@@ -47,7 +47,7 @@ jobs:
     - name: Make and install igraph
       if: ${{ matrix.config.os == 'ubuntu-latest' && steps.cache-igraph.outputs.cache-hit != 'true' }}
       run: |
-        version=0.10.13
+        version=1.0.0
         path=$(pwd)
         wget https://github.com/igraph/igraph/releases/download/${version}/igraph-${version}.tar.gz
         tar -xf igraph-${version}.tar.gz

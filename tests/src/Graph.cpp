@@ -4,6 +4,8 @@
 #include <random>
 
 TEST(Graph, Basic) {
+    igraph_setup();
+
     std::mt19937_64 rng(42);
     std::normal_distribution distr;
     std::uniform_real_distribution distu;
@@ -20,8 +22,7 @@ TEST(Graph, Basic) {
     }
     size_t nedges = edges.size() / 2;
 
-    igraph_vector_int_t edge_view;
-    igraph_vector_int_view(&edge_view, edges.data(), edges.size());
+    igraph_vector_int_t edge_view = igraph_vector_int_view(edges.data(), edges.size());
 
     // Basic checks for graph capabilities.
     raiigraph::Graph graph(&edge_view, nobs, IGRAPH_DIRECTED);
@@ -73,6 +74,8 @@ TEST(Graph, Basic) {
 }
 
 TEST(Graph, Coercion) {
+    igraph_setup();
+
     raiigraph::Graph tmp;
     EXPECT_EQ(tmp.get(), static_cast<igraph_t*>(tmp));
 
@@ -81,6 +84,8 @@ TEST(Graph, Coercion) {
 }
 
 TEST(Graph, Methods) {
+    igraph_setup();
+
     raiigraph::IntVector edges;
     edges.push_back(0);
     edges.push_back(1);
@@ -93,7 +98,7 @@ TEST(Graph, Methods) {
 
     // Basic checks for graph capabilities.
     EXPECT_TRUE(graph.is_connected());
-    EXPECT_TRUE(graph.is_simple());
+    EXPECT_TRUE(graph.is_simple(IGRAPH_UNDIRECTED));
     EXPECT_FALSE(graph.has_loop());
     EXPECT_FALSE(graph.has_multiple());
     EXPECT_FALSE(graph.has_mutual());
