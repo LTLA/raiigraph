@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
 
 #include "raiigraph/RNGScope.hpp"
+#include "raiigraph/initialize.hpp"
 
 TEST(RNGScope, Basic) {
-    igraph_setup();
+    raiigraph::initialize();
 
     int first, second;
     {

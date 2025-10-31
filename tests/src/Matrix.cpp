@@ -1,10 +1,12 @@
 #include <gtest/gtest.h>
 
 #include "raiigraph/Matrix.hpp"
+#include "raiigraph/initialize.hpp"
+
 #include <random>
 
 TEST(Matrix, Construction) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntMatrix empty;
     EXPECT_TRUE(empty.empty());
@@ -77,7 +79,7 @@ TEST(Matrix, Construction) {
 }
 
 TEST(Matrix, Resize) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntMatrix contents(10, 10);
     contents.clear();
@@ -95,7 +97,7 @@ TEST(Matrix, Resize) {
 }
 
 TEST(Matrix, Access1D) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -153,7 +155,7 @@ TEST(Matrix, Access1D) {
 }
 
 TEST(Matrix, Access2D) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -176,7 +178,7 @@ TEST(Matrix, Access2D) {
 }
 
 TEST(Matrix, AccessRow) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -285,7 +287,7 @@ TEST(Matrix, AccessRow) {
 }
 
 TEST(Matrix, AccessColumn) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 20); 
     std::iota(contents.begin(), contents.end(), 0); // column-major filling.
@@ -326,7 +328,7 @@ TEST(Matrix, AccessColumn) {
 }
 
 TEST(Matrix, Coercion) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 10);
     EXPECT_EQ(contents.get(), static_cast<igraph_matrix_int_t*>(contents));
@@ -336,7 +338,7 @@ TEST(Matrix, Coercion) {
 }
 
 TEST(Matrix, Swap) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::IntegerMatrix contents(10, 10);
     raiigraph::IntegerMatrix contents2(5, 5, 1);
@@ -349,7 +351,7 @@ TEST(Matrix, Swap) {
 }
 
 TEST(Matrix, OtherTypes) {
-    igraph_setup();
+    raiigraph::initialize();
 
     raiigraph::BoolMatrix bcontents(1, 1, 0);
     EXPECT_FALSE(bcontents.front());

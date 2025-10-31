@@ -17,7 +17,7 @@ namespace raiigraph {
  * When an instance of this class is created, it will replace the global default **igraph** RNG with its own.
  * When it is destroyed, it will restore the default to the RNG that was present before its construction.
  *
- * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
+ * It is assumed that users have already called `igraph_setup()` or `initialize()` before constructing a instance of this class.
  */
 class RNGScope {
 public:

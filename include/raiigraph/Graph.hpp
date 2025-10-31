@@ -19,7 +19,7 @@ namespace raiigraph {
  * Users should only pass instances of this class to **igraph** functions that accept an already-initialized graph.
  * Users should not attempt to destroy the graph manually as this is done automatically when the `Graph` goes out of scope.
  *
- * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
+ * It is assumed that users have already called `igraph_setup()` or `initialize()` before constructing a instance of this class.
  */
 class Graph {
 private:

@@ -32,7 +32,7 @@ All wrappers provide the usual RAII behavior, greatly simplifying memory managem
 ```cpp
 #include "raiigraph/raiigraph.hpp"
 
-igraph_setup(); // call this before using any igraph functions.
+raiigraph::initialize(); // call this before using any (rai)igraph functions.
 
 {
     raiigraph::IntVector thing(50);

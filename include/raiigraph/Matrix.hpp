@@ -23,7 +23,7 @@ namespace raiigraph {
  * Users should only pass instances of this class to **igraph** functions that accept an already-initialized matrix.
  * Users should not attempt to destroy the matrix manually as this is done automatically when the `Matrix` goes out of scope.
  *
- * It is assumed that users have already called `igraph_setup()` before constructing a instance of this class.
+ * It is assumed that users have already called `igraph_setup()` or `initialize()` before constructing a instance of this class.
  */
 template<class Ns_>
 class Matrix {
