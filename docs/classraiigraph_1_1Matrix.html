@@ -248,7 +248,7 @@ class raiigraph::Matrix&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_matrix_
   </dd>
 </dl>
 <p>This class has ownership of the underlying <code>igraph_matrix_*_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized matrix. Users should not attempt to destroy the matrix manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Matrix.html" title="Wrapper around igraph_matrix_*_t objects with RAII behavior.">Matrix</a></code> goes out of scope.</p>
-<p>It is assumed that users have already called <code><a class="el" href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">initialize()</a></code> before constructing a instance of this class. </p>
+<p>It is assumed that users have already called <code>igraph_setup()</code> or <code><a class="el" href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">initialize()</a></code> before constructing a instance of this class. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aa312a6e90bcb351d27149e1a86de8008" name="aa312a6e90bcb351d27149e1a86de8008"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa312a6e90bcb351d27149e1a86de8008">&#9670;&#160;</a></span>const_iterator</h2>
