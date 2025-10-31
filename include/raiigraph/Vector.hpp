@@ -29,9 +29,7 @@ template<class Ns_>
 class Vector {
 private:
     void setup(igraph_int_t size) {
-        if (Ns_::init(&my_vector, size)) {
-            throw std::runtime_error("failed to initialize igraph vector of size " + std::to_string(size));
-        }
+        check_code(Ns_::init(&my_vector, size));
     }
 
 public:
@@ -121,9 +119,7 @@ public:
      * This constructor will make a deep copy.
      */
     Vector(const Vector<Ns_>& other) {
-        if (Ns_::copy(&my_vector, &(other.my_vector))) {
-            throw std::runtime_error("failed to copy-construct integer igraph vector");
-        }
+        check_code(Ns_::copy(&my_vector, &(other.my_vector)));
     }
 
     /**
@@ -132,9 +128,8 @@ public:
      */
     Vector<Ns_>& operator=(const Vector<Ns_>& other) {
         if (this != &other) {
-            if (Ns_::update(&my_vector, &(other.my_vector))) { // my_vector should already be initialized before the assignment.
-                throw std::runtime_error("failed to copy-assign integer igraph vector");
-            }
+            // my_vector should already be initialized before the assignment.
+            check_code(Ns_::update(&my_vector, &(other.my_vector)));
         }
         return *this;
     }

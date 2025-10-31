@@ -24,9 +24,7 @@ namespace raiigraph {
 class Graph {
 private:
     void setup(igraph_int_t num_vertices, igraph_bool_t directed) {
-        if (igraph_empty(&my_graph, num_vertices, directed)) {
-            throw std::runtime_error("failed to initialize an empty igraph graph object"); 
-        } 
+        check_code(igraph_empty(&my_graph, num_vertices, directed));
     }
 
 public:
@@ -58,9 +56,7 @@ public:
      * @param directed Whether the graph is directed.
      */
     Graph(const igraph_vector_int_t* edges, igraph_int_t num_vertices, igraph_bool_t directed) { 
-        if (igraph_create(&my_graph, edges, num_vertices, directed)) {
-            throw std::runtime_error("failed to initialize an igraph graph object"); 
-        }
+        check_code(igraph_create(&my_graph, edges, num_vertices, directed));
     }
 
     /**
@@ -73,9 +69,7 @@ public:
      * @param other Graph to be copy-constructed from.
      */
     Graph(const Graph& other) {
-        if (igraph_copy(&my_graph, &(other.my_graph))) {
-            throw std::runtime_error("failed to copy-construct an igraph graph object"); 
-        }
+        check_code(igraph_copy(&my_graph, &(other.my_graph)));
     }
 
     /**
@@ -83,9 +77,7 @@ public:
      */
     Graph& operator=(const Graph& other) {
         if (this != &other) {
-            if (igraph_copy(&my_graph, &(other.my_graph))) {
-                throw std::runtime_error("failed to copy-assign an igraph graph object"); 
-            }
+            check_code(igraph_copy(&my_graph, &(other.my_graph)));
         }
         return *this;
     }

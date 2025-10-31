@@ -23,8 +23,7 @@ inline bool initialize() {
         return true;
     } 
 
-    const auto stat = igraph_setup();
-    check_code(stat);
+    check_code(igraph_setup());
     return false;
 }
 

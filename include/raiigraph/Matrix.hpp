@@ -29,9 +29,7 @@ template<class Ns_>
 class Matrix {
 private:
     void setup(igraph_int_t nr, igraph_int_t nc) {
-        if (Ns_::init(&my_matrix, nr, nc)) {
-            throw std::runtime_error("failed to initialize igraph matrix of dimensions " + std::to_string(nr) + " x " + std::to_string(nc));
-        }
+        check_code(Ns_::init(&my_matrix, nr, nc));
     }
 
 public:
@@ -119,9 +117,7 @@ public:
      * This constructor will make a deep copy.
      */
     Matrix(const Matrix<Ns_>& other) {
-        if (Ns_::copy(&my_matrix, &(other.my_matrix))) {
-            throw std::runtime_error("failed to copy-construct integer igraph matrix");
-        }
+        check_code(Ns_::copy(&my_matrix, &(other.my_matrix)));
     }
 
     /**
@@ -130,9 +126,8 @@ public:
      */
     Matrix<Ns_>& operator=(const Matrix<Ns_>& other) {
         if (this != &other) {
-            if (Ns_::update(&my_matrix, &(other.my_matrix))) { // my_matrix should already be initialized before the assignment.
-                throw std::runtime_error("failed to copy-assign integer igraph matrix");
-            }
+            // my_matrix should already be initialized before the assignment.
+            check_code(Ns_::update(&my_matrix, &(other.my_matrix)));
         }
         return *this;
     }
