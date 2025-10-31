@@ -106,236 +106,241 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a> {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> setup(igraph_int_t num_vertices, igraph_bool_t directed) {</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keywordflow">if</span> (igraph_empty(&amp;my_graph, num_vertices, directed)) {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to initialize an empty igraph graph object&quot;</span>); </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        } </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    }</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">   39</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">Graph</a>(igraph_int_t num_vertices = 0, igraph_bool_t directed = <span class="keyword">false</span>) {</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        setup(num_vertices, directed);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        <span class="keyword">const</span> <span class="keyword">auto</span> status = igraph_empty(&amp;my_graph, num_vertices, directed);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        <span class="keywordflow">if</span> (status != IGRAPH_SUCCESS) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classraiigraph_1_1IgraphError.html">IgraphError</a>(status);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        } </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">   40</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">Graph</a>(igraph_int_t num_vertices = 0, igraph_bool_t directed = <span class="keyword">false</span>) {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        setup(num_vertices, directed);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    }</div>
 </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">   51</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">Graph</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a>&amp; edges, igraph_int_t num_vertices, igraph_bool_t directed) : <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>(edges.<a class="code hl_function" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">get</a>(), num_vertices, directed) {} </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="foldopen" id="foldopen00060" data-start="{" data-end="}">
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">   60</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">Graph</a>(<span class="keyword">const</span> igraph_vector_int_t* edges, igraph_int_t num_vertices, igraph_bool_t directed) { </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">if</span> (igraph_create(&amp;my_graph, edges, num_vertices, directed)) {</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to initialize an igraph graph object&quot;</span>); </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        }</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">   52</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">Graph</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a>&amp; edges, igraph_int_t num_vertices, igraph_bool_t directed) : <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>(edges.<a class="code hl_function" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">get</a>(), num_vertices, directed) {} </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">   61</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">Graph</a>(<span class="keyword">const</span> igraph_vector_int_t* edges, igraph_int_t num_vertices, igraph_bool_t directed) { </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keyword">const</span> <span class="keyword">auto</span> status = igraph_create(&amp;my_graph, edges, num_vertices, directed);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        <span class="keywordflow">if</span> (status != IGRAPH_SUCCESS) {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classraiigraph_1_1IgraphError.html">IgraphError</a>(status);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    }</div>
 </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">   69</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">Graph</a>(igraph_t&amp;&amp; graph) : my_graph(std::move(graph)) {}</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">   75</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">Graph</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; other) {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        <span class="keywordflow">if</span> (igraph_copy(&amp;my_graph, &amp;(other.my_graph))) {</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to copy-construct an igraph graph object&quot;</span>); </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">   71</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">Graph</a>(igraph_t&amp;&amp; graph) : my_graph(std::move(graph)) {}</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00077" data-start="{" data-end="}">
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">   77</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">Graph</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; other) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keyword">const</span> <span class="keyword">auto</span> status = igraph_copy(&amp;my_graph, &amp;(other.my_graph));</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">if</span> (status != IGRAPH_SUCCESS) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="keywordflow">throw</span> <a class="code hl_class" href="classraiigraph_1_1IgraphError.html">IgraphError</a>(status);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
 </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="foldopen" id="foldopen00084" data-start="{" data-end="}">
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">   84</a></span>    <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; <a class="code hl_function" href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; other) {</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            <span class="keywordflow">if</span> (igraph_copy(&amp;my_graph, &amp;(other.my_graph))) {</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;failed to copy-assign an igraph graph object&quot;</span>); </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            }</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        }</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="foldopen" id="foldopen00087" data-start="{" data-end="}">
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">   87</a></span>    <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; <a class="code hl_function" href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; other) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            <span class="keyword">const</span> <span class="keyword">auto</span> status = igraph_copy(&amp;my_graph, &amp;(other.my_graph));</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (status != IGRAPH_SUCCESS) {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>                <span class="keywordflow">throw</span> <a class="code hl_class" href="classraiigraph_1_1IgraphError.html">IgraphError</a>(status);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>            }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    }</div>
 </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="foldopen" id="foldopen00097" data-start="{" data-end="}">
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">   97</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">Graph</a>(<a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp;&amp; other) {</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>        setup(0, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        std::swap(my_graph, other.my_graph);</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    }    </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="foldopen" id="foldopen00101" data-start="{" data-end="}">
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">  101</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">Graph</a>(<a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp;&amp; other) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        setup(0, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        std::swap(my_graph, other.my_graph);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    }    </div>
 </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="foldopen" id="foldopen00106" data-start="{" data-end="}">
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">  106</a></span>    <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; <a class="code hl_function" href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">operator=</a>(<a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp;&amp; other) {</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>            std::swap(my_graph, other.my_graph);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        }</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="foldopen" id="foldopen00110" data-start="{" data-end="}">
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">  110</a></span>    <a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp; <a class="code hl_function" href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">operator=</a>(<a class="code hl_class" href="classraiigraph_1_1Graph.html">Graph</a>&amp;&amp; other) {</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> (<span class="keyword">this</span> != &amp;other) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>            std::swap(my_graph, other.my_graph);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        }</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    }</div>
 </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="foldopen" id="foldopen00116" data-start="{" data-end="}">
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">  116</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">~Graph</a>() {</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        igraph_destroy(&amp;my_graph);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="foldopen" id="foldopen00120" data-start="{" data-end="}">
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">  120</a></span>    <a class="code hl_function" href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">~Graph</a>() {</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        igraph_destroy(&amp;my_graph);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
 </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00124" data-start="{" data-end="}">
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">  124</a></span>    igraph_int_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">vcount</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <span class="keywordflow">return</span> igraph_vcount(&amp;my_graph);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">  128</a></span>    igraph_int_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">vcount</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <span class="keywordflow">return</span> igraph_vcount(&amp;my_graph);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    }</div>
 </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">  131</a></span>    igraph_int_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">ecount</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> igraph_ecount(&amp;my_graph);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="foldopen" id="foldopen00135" data-start="{" data-end="}">
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">  135</a></span>    igraph_int_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">ecount</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        <span class="keywordflow">return</span> igraph_ecount(&amp;my_graph);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    }</div>
 </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="foldopen" id="foldopen00141" data-start="{" data-end="}">
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">  141</a></span>    <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a> <a class="code hl_function" href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">get_edgelist</a>(igraph_bool_t by_col = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>        <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a> out(<a class="code hl_function" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">ecount</a>());</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_get_edgelist(&amp;my_graph, out.<a class="code hl_function" href="classraiigraph_1_1Vector.html#a3fe29f3bb1c31a789004d09e88f87694">get</a>(), by_col));</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <span class="keywordflow">return</span> out;</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="foldopen" id="foldopen00145" data-start="{" data-end="}">
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">  145</a></span>    <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a> <a class="code hl_function" href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">get_edgelist</a>(igraph_bool_t by_col = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <a class="code hl_class" href="classraiigraph_1_1Vector.html">IntVector</a> out(<a class="code hl_function" href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">ecount</a>());</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_get_edgelist(&amp;my_graph, out.<a class="code hl_function" href="classraiigraph_1_1Vector.html#a3fe29f3bb1c31a789004d09e88f87694">get</a>(), by_col));</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span> out;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
 </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00151" data-start="{" data-end="}">
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">  151</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">is_directed</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">return</span> igraph_is_directed(&amp;my_graph);</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00155" data-start="{" data-end="}">
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">  155</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">is_directed</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        <span class="keywordflow">return</span> igraph_is_directed(&amp;my_graph);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    }</div>
 </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="foldopen" id="foldopen00161" data-start="{" data-end="}">
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">  161</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">is_connected</a>(igraph_connectedness_t mode = IGRAPH_WEAK)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_connected(&amp;my_graph, &amp;res, mode));</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    }</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="foldopen" id="foldopen00165" data-start="{" data-end="}">
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">  165</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">is_connected</a>(igraph_connectedness_t mode = IGRAPH_WEAK)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_connected(&amp;my_graph, &amp;res, mode));</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    }</div>
 </div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
-<div class="foldopen" id="foldopen00173" data-start="{" data-end="}">
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">  173</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">is_simple</a>(igraph_bool_t directed)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_simple(&amp;my_graph, &amp;res, directed));</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="foldopen" id="foldopen00177" data-start="{" data-end="}">
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">  177</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">is_simple</a>(igraph_bool_t directed)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_simple(&amp;my_graph, &amp;res, directed));</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    }</div>
 </div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="foldopen" id="foldopen00182" data-start="{" data-end="}">
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">  182</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">has_loop</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_loop(&amp;my_graph, &amp;res));</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    }</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="foldopen" id="foldopen00186" data-start="{" data-end="}">
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">  186</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">has_loop</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_loop(&amp;my_graph, &amp;res));</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>    }</div>
 </div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="foldopen" id="foldopen00191" data-start="{" data-end="}">
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">  191</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">has_multiple</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_multiple(&amp;my_graph, &amp;res));</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="foldopen" id="foldopen00195" data-start="{" data-end="}">
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">  195</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">has_multiple</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_multiple(&amp;my_graph, &amp;res));</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
 </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="foldopen" id="foldopen00201" data-start="{" data-end="}">
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">  201</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">has_mutual</a>(igraph_bool_t loops = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_mutual(&amp;my_graph, &amp;res, loops));</div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    }</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">  205</a></span>    igraph_bool_t <a class="code hl_function" href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">has_mutual</a>(igraph_bool_t loops = <span class="keyword">false</span>)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_has_mutual(&amp;my_graph, &amp;res, loops));</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
 </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
-<div class="foldopen" id="foldopen00213" data-start="{" data-end="}">
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">  213</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">is_tree</a>(igraph_neimode_t mode = IGRAPH_ALL)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_tree(&amp;my_graph, &amp;res, NULL, mode));</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    }</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="foldopen" id="foldopen00217" data-start="{" data-end="}">
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">  217</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">is_tree</a>(igraph_neimode_t mode = IGRAPH_ALL)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_tree(&amp;my_graph, &amp;res, NULL, mode));</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    }</div>
 </div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
-<div class="foldopen" id="foldopen00223" data-start="{" data-end="}">
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">  223</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">is_forest</a>(igraph_neimode_t mode = IGRAPH_ALL)<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_forest(&amp;my_graph, &amp;res, NULL, mode));</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    }</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
+<div class="foldopen" id="foldopen00227" data-start="{" data-end="}">
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">  227</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">is_forest</a>(igraph_neimode_t mode = IGRAPH_ALL)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_forest(&amp;my_graph, &amp;res, NULL, mode));</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
 </div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
-<div class="foldopen" id="foldopen00232" data-start="{" data-end="}">
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">  232</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">is_dag</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_dag(&amp;my_graph, &amp;res));</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="foldopen" id="foldopen00236" data-start="{" data-end="}">
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">  236</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">is_dag</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_dag(&amp;my_graph, &amp;res));</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>    }</div>
 </div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
-<div class="foldopen" id="foldopen00241" data-start="{" data-end="}">
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">  241</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">is_acyclic</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        igraph_bool_t res;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_acyclic(&amp;my_graph, &amp;res));</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>    }</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="foldopen" id="foldopen00245" data-start="{" data-end="}">
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">  245</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">is_acyclic</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        igraph_bool_t res;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <a class="code hl_function" href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">check_code</a>(igraph_is_acyclic(&amp;my_graph, &amp;res));</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    }</div>
 </div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span><span class="keyword">public</span>:</div>
-<div class="foldopen" id="foldopen00252" data-start="{" data-end="}">
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a05a2b55d9f54978ce4012b23a823732e">  252</a></span>    <span class="keyword">operator</span> igraph_t*() {</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    }</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00256" data-start="{" data-end="}">
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a05a2b55d9f54978ce4012b23a823732e">  256</a></span>    <span class="keyword">operator</span> igraph_t*() {</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    }</div>
 </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
-<div class="foldopen" id="foldopen00260" data-start="{" data-end="}">
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9ea77a49f8942b17167f1d55a2297a01">  260</a></span>    <span class="keyword">operator</span> <span class="keyword">const</span> igraph_t*() <span class="keyword">const</span> {</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    }</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a9ea77a49f8942b17167f1d55a2297a01">  264</a></span>    <span class="keyword">operator</span> <span class="keyword">const</span> igraph_t*() <span class="keyword">const</span> {</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    }</div>
 </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="foldopen" id="foldopen00268" data-start="{" data-end="}">
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">  268</a></span>    igraph_t* <a class="code hl_function" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">get</a>() {</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    }</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="foldopen" id="foldopen00272" data-start="{" data-end="}">
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">  272</a></span>    igraph_t* <a class="code hl_function" href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">get</a>() {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>    }</div>
 </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
-<div class="foldopen" id="foldopen00276" data-start="{" data-end="}">
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">  276</a></span>    <span class="keyword">const</span> igraph_t* <a class="code hl_function" href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">get</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    }</div>
-</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    igraph_t my_graph;</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>};</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="foldopen" id="foldopen00280" data-start="{" data-end="}">
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno"><a class="line" href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">  280</a></span>    <span class="keyword">const</span> igraph_t* <a class="code hl_function" href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">get</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>        <span class="keywordflow">return</span> &amp;my_graph;</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    }</div>
 </div>
 <div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>}</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>    igraph_t my_graph;</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>};</div>
+</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aVector_8hpp_html"><div class="ttname"><a href="Vector_8hpp.html">Vector.hpp</a></div><div class="ttdoc">Wrapper around igraph_vector_*_t objects with RAII behavior.</div></div>
 <div class="ttc" id="aclassraiigraph_1_1Graph_html"><div class="ttname"><a href="classraiigraph_1_1Graph.html">raiigraph::Graph</a></div><div class="ttdoc">Wrapper around igraph_t objects with RAII behavior.</div><div class="ttdef"><b>Definition</b> Graph.hpp:24</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a0d5c128f2de9bb41ad66244f4a27c6f4"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">raiigraph::Graph::operator=</a></div><div class="ttdeci">Graph &amp; operator=(const Graph &amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:84</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a20f81e4c7965a7e6f074408f81117a72"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">raiigraph::Graph::get_edgelist</a></div><div class="ttdeci">IntVector get_edgelist(igraph_bool_t by_col=false) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:141</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a36739b1a67f19166096da8a4b12bc540"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const Graph &amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:75</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a3fcac167f8bb1d11d1d6826c8fb5ea51"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">raiigraph::Graph::get</a></div><div class="ttdeci">igraph_t * get()</div><div class="ttdef"><b>Definition</b> Graph.hpp:268</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a476be0d3cab3d7023cc1d375cdd49815"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(igraph_t &amp;&amp;graph)</div><div class="ttdef"><b>Definition</b> Graph.hpp:69</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a4f06934e555ad7dbf0a7e690f2d6074a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const igraph_vector_int_t *edges, igraph_int_t num_vertices, igraph_bool_t directed)</div><div class="ttdef"><b>Definition</b> Graph.hpp:60</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a5c4c4c4d05c373f13a129c349eb13b3b"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">raiigraph::Graph::operator=</a></div><div class="ttdeci">Graph &amp; operator=(Graph &amp;&amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:106</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a5f54b1daba3694389141faddeff72112"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const IntVector &amp;edges, igraph_int_t num_vertices, igraph_bool_t directed)</div><div class="ttdef"><b>Definition</b> Graph.hpp:51</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a7a43dcd17e4f67f12e38fcbeaaaa3e67"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">raiigraph::Graph::has_loop</a></div><div class="ttdeci">igraph_bool_t has_loop() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:182</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a9332805548e386f1068133cead41cda1"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">raiigraph::Graph::is_directed</a></div><div class="ttdeci">igraph_bool_t is_directed() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:151</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a946e0131f97b9ac0d0fb274742cb4fce"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">raiigraph::Graph::get</a></div><div class="ttdeci">const igraph_t * get() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:276</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a96f30d385d23b8b9cb83681060ce62dc"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">raiigraph::Graph::is_dag</a></div><div class="ttdeci">bool is_dag() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:232</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_a9c16521b5de25c16a6f1d7f8be17f010"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">raiigraph::Graph::is_simple</a></div><div class="ttdeci">igraph_bool_t is_simple(igraph_bool_t directed) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:173</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_aa5d00471e7db7e02634c0d1fa256f33a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">raiigraph::Graph::~Graph</a></div><div class="ttdeci">~Graph()</div><div class="ttdef"><b>Definition</b> Graph.hpp:116</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_aa75d546be246e12dbc6bf24f7e14d78a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">raiigraph::Graph::ecount</a></div><div class="ttdeci">igraph_int_t ecount() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:131</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_abed6977a7f7efd0e31dacac3c2fa5d87"><div class="ttname"><a href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">raiigraph::Graph::has_mutual</a></div><div class="ttdeci">igraph_bool_t has_mutual(igraph_bool_t loops=false) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:201</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_acc26287ce0446259a897bcecec605d1a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">raiigraph::Graph::vcount</a></div><div class="ttdeci">igraph_int_t vcount() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:124</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_ad7fa126f7c1c83599b2fb7e2964cf902"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">raiigraph::Graph::is_acyclic</a></div><div class="ttdeci">bool is_acyclic() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:241</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_ad959fdd9a7603dea77464ed9f67f6694"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">raiigraph::Graph::is_forest</a></div><div class="ttdeci">bool is_forest(igraph_neimode_t mode=IGRAPH_ALL) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:223</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_adaa64afba04dc3aae19f5759efed39ac"><div class="ttname"><a href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">raiigraph::Graph::has_multiple</a></div><div class="ttdeci">igraph_bool_t has_multiple() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:191</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_adc26411c13af0d9397bc7affc0fc97b5"><div class="ttname"><a href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">raiigraph::Graph::is_tree</a></div><div class="ttdeci">bool is_tree(igraph_neimode_t mode=IGRAPH_ALL) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:213</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_ae8507c23dc12ac3dc90da8f10aecaadb"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(Graph &amp;&amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:97</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_aea9b1256e588ab1d51c71f1552da2bbd"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(igraph_int_t num_vertices=0, igraph_bool_t directed=false)</div><div class="ttdef"><b>Definition</b> Graph.hpp:39</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Graph_html_af9d7d96b8a77571816b78e48a97071d9"><div class="ttname"><a href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">raiigraph::Graph::is_connected</a></div><div class="ttdeci">igraph_bool_t is_connected(igraph_connectedness_t mode=IGRAPH_WEAK) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:161</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a0d5c128f2de9bb41ad66244f4a27c6f4"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a0d5c128f2de9bb41ad66244f4a27c6f4">raiigraph::Graph::operator=</a></div><div class="ttdeci">Graph &amp; operator=(const Graph &amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:87</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a20f81e4c7965a7e6f074408f81117a72"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a20f81e4c7965a7e6f074408f81117a72">raiigraph::Graph::get_edgelist</a></div><div class="ttdeci">IntVector get_edgelist(igraph_bool_t by_col=false) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:145</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a36739b1a67f19166096da8a4b12bc540"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a36739b1a67f19166096da8a4b12bc540">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const Graph &amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:77</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a3fcac167f8bb1d11d1d6826c8fb5ea51"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a3fcac167f8bb1d11d1d6826c8fb5ea51">raiigraph::Graph::get</a></div><div class="ttdeci">igraph_t * get()</div><div class="ttdef"><b>Definition</b> Graph.hpp:272</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a476be0d3cab3d7023cc1d375cdd49815"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a476be0d3cab3d7023cc1d375cdd49815">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(igraph_t &amp;&amp;graph)</div><div class="ttdef"><b>Definition</b> Graph.hpp:71</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a4f06934e555ad7dbf0a7e690f2d6074a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a4f06934e555ad7dbf0a7e690f2d6074a">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const igraph_vector_int_t *edges, igraph_int_t num_vertices, igraph_bool_t directed)</div><div class="ttdef"><b>Definition</b> Graph.hpp:61</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a5c4c4c4d05c373f13a129c349eb13b3b"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a5c4c4c4d05c373f13a129c349eb13b3b">raiigraph::Graph::operator=</a></div><div class="ttdeci">Graph &amp; operator=(Graph &amp;&amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:110</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a5f54b1daba3694389141faddeff72112"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a5f54b1daba3694389141faddeff72112">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(const IntVector &amp;edges, igraph_int_t num_vertices, igraph_bool_t directed)</div><div class="ttdef"><b>Definition</b> Graph.hpp:52</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a7a43dcd17e4f67f12e38fcbeaaaa3e67"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a7a43dcd17e4f67f12e38fcbeaaaa3e67">raiigraph::Graph::has_loop</a></div><div class="ttdeci">igraph_bool_t has_loop() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:186</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a9332805548e386f1068133cead41cda1"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a9332805548e386f1068133cead41cda1">raiigraph::Graph::is_directed</a></div><div class="ttdeci">igraph_bool_t is_directed() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:155</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a946e0131f97b9ac0d0fb274742cb4fce"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a946e0131f97b9ac0d0fb274742cb4fce">raiigraph::Graph::get</a></div><div class="ttdeci">const igraph_t * get() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:280</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a96f30d385d23b8b9cb83681060ce62dc"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a96f30d385d23b8b9cb83681060ce62dc">raiigraph::Graph::is_dag</a></div><div class="ttdeci">bool is_dag() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:236</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_a9c16521b5de25c16a6f1d7f8be17f010"><div class="ttname"><a href="classraiigraph_1_1Graph.html#a9c16521b5de25c16a6f1d7f8be17f010">raiigraph::Graph::is_simple</a></div><div class="ttdeci">igraph_bool_t is_simple(igraph_bool_t directed) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:177</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_aa5d00471e7db7e02634c0d1fa256f33a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aa5d00471e7db7e02634c0d1fa256f33a">raiigraph::Graph::~Graph</a></div><div class="ttdeci">~Graph()</div><div class="ttdef"><b>Definition</b> Graph.hpp:120</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_aa75d546be246e12dbc6bf24f7e14d78a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aa75d546be246e12dbc6bf24f7e14d78a">raiigraph::Graph::ecount</a></div><div class="ttdeci">igraph_int_t ecount() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:135</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_abed6977a7f7efd0e31dacac3c2fa5d87"><div class="ttname"><a href="classraiigraph_1_1Graph.html#abed6977a7f7efd0e31dacac3c2fa5d87">raiigraph::Graph::has_mutual</a></div><div class="ttdeci">igraph_bool_t has_mutual(igraph_bool_t loops=false) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:205</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_acc26287ce0446259a897bcecec605d1a"><div class="ttname"><a href="classraiigraph_1_1Graph.html#acc26287ce0446259a897bcecec605d1a">raiigraph::Graph::vcount</a></div><div class="ttdeci">igraph_int_t vcount() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:128</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_ad7fa126f7c1c83599b2fb7e2964cf902"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ad7fa126f7c1c83599b2fb7e2964cf902">raiigraph::Graph::is_acyclic</a></div><div class="ttdeci">bool is_acyclic() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:245</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_ad959fdd9a7603dea77464ed9f67f6694"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ad959fdd9a7603dea77464ed9f67f6694">raiigraph::Graph::is_forest</a></div><div class="ttdeci">bool is_forest(igraph_neimode_t mode=IGRAPH_ALL) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:227</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_adaa64afba04dc3aae19f5759efed39ac"><div class="ttname"><a href="classraiigraph_1_1Graph.html#adaa64afba04dc3aae19f5759efed39ac">raiigraph::Graph::has_multiple</a></div><div class="ttdeci">igraph_bool_t has_multiple() const</div><div class="ttdef"><b>Definition</b> Graph.hpp:195</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_adc26411c13af0d9397bc7affc0fc97b5"><div class="ttname"><a href="classraiigraph_1_1Graph.html#adc26411c13af0d9397bc7affc0fc97b5">raiigraph::Graph::is_tree</a></div><div class="ttdeci">bool is_tree(igraph_neimode_t mode=IGRAPH_ALL) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:217</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_ae8507c23dc12ac3dc90da8f10aecaadb"><div class="ttname"><a href="classraiigraph_1_1Graph.html#ae8507c23dc12ac3dc90da8f10aecaadb">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(Graph &amp;&amp;other)</div><div class="ttdef"><b>Definition</b> Graph.hpp:101</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_aea9b1256e588ab1d51c71f1552da2bbd"><div class="ttname"><a href="classraiigraph_1_1Graph.html#aea9b1256e588ab1d51c71f1552da2bbd">raiigraph::Graph::Graph</a></div><div class="ttdeci">Graph(igraph_int_t num_vertices=0, igraph_bool_t directed=false)</div><div class="ttdef"><b>Definition</b> Graph.hpp:40</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Graph_html_af9d7d96b8a77571816b78e48a97071d9"><div class="ttname"><a href="classraiigraph_1_1Graph.html#af9d7d96b8a77571816b78e48a97071d9">raiigraph::Graph::is_connected</a></div><div class="ttdeci">igraph_bool_t is_connected(igraph_connectedness_t mode=IGRAPH_WEAK) const</div><div class="ttdef"><b>Definition</b> Graph.hpp:165</div></div>
+<div class="ttc" id="aclassraiigraph_1_1IgraphError_html"><div class="ttname"><a href="classraiigraph_1_1IgraphError.html">raiigraph::IgraphError</a></div><div class="ttdoc">Error class for igraph-related errors.</div><div class="ttdef"><b>Definition</b> error.hpp:16</div></div>
 <div class="ttc" id="aclassraiigraph_1_1Vector_html"><div class="ttname"><a href="classraiigraph_1_1Vector.html">raiigraph::Vector</a></div><div class="ttdoc">Wrapper around igraph_vector_*_t objects with RAII behavior.</div><div class="ttdef"><b>Definition</b> Vector.hpp:29</div></div>
-<div class="ttc" id="aclassraiigraph_1_1Vector_html_a3fe29f3bb1c31a789004d09e88f87694"><div class="ttname"><a href="classraiigraph_1_1Vector.html#a3fe29f3bb1c31a789004d09e88f87694">raiigraph::Vector::get</a></div><div class="ttdeci">igraph_type * get()</div><div class="ttdef"><b>Definition</b> Vector.hpp:504</div></div>
+<div class="ttc" id="aclassraiigraph_1_1Vector_html_a3fe29f3bb1c31a789004d09e88f87694"><div class="ttname"><a href="classraiigraph_1_1Vector.html#a3fe29f3bb1c31a789004d09e88f87694">raiigraph::Vector::get</a></div><div class="ttdeci">igraph_type * get()</div><div class="ttdef"><b>Definition</b> Vector.hpp:507</div></div>
 <div class="ttc" id="aerror_8hpp_html"><div class="ttname"><a href="error_8hpp.html">error.hpp</a></div><div class="ttdoc">Error handling for raiigraph.</div></div>
 <div class="ttc" id="anamespaceraiigraph_html"><div class="ttname"><a href="namespaceraiigraph.html">raiigraph</a></div><div class="ttdoc">Utilities for manipulating igraph data structures in C++.</div><div class="ttdef"><b>Definition</b> error.hpp:11</div></div>
-<div class="ttc" id="anamespaceraiigraph_html_a5f607861d72bc10f788bd9fc8d410d84"><div class="ttname"><a href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">raiigraph::check_code</a></div><div class="ttdeci">void check_code(igraph_error_t code)</div><div class="ttdef"><b>Definition</b> error.hpp:34</div></div>
+<div class="ttc" id="anamespaceraiigraph_html_a5f607861d72bc10f788bd9fc8d410d84"><div class="ttname"><a href="namespaceraiigraph.html#a5f607861d72bc10f788bd9fc8d410d84">raiigraph::check_code</a></div><div class="ttdeci">void check_code(igraph_error_t code)</div><div class="ttdef"><b>Definition</b> error.hpp:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

@@ -92,7 +92,6 @@ $(function(){ initResizable(false); });
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classraiigraph_1_1IgraphError-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">raiigraph::IgraphError Class Reference</div></div>
 </div><!--header-->
@@ -111,13 +110,10 @@ Inheritance diagram for raiigraph::IgraphError:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5e22c4407f2c451d39b3664bfbc26663" id="r_a5e22c4407f2c451d39b3664bfbc26663"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e22c4407f2c451d39b3664bfbc26663">IgraphError</a> (igraph_error_t <a class="el" href="#a161c1f9c5d06910276c5e707a706fb6e">code</a>)</td></tr>
+<tr class="memitem:a5e22c4407f2c451d39b3664bfbc26663" id="r_a5e22c4407f2c451d39b3664bfbc26663"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e22c4407f2c451d39b3664bfbc26663">IgraphError</a> (igraph_error_t <a class="el" href="#ae5de7b05d9d5cdae48e013a476cb3542">code</a>)</td></tr>
 <tr class="separator:a5e22c4407f2c451d39b3664bfbc26663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a161c1f9c5d06910276c5e707a706fb6e" id="r_a161c1f9c5d06910276c5e707a706fb6e"><td class="memItemLeft" align="right" valign="top">igraph_error_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a161c1f9c5d06910276c5e707a706fb6e">code</a></td></tr>
-<tr class="separator:a161c1f9c5d06910276c5e707a706fb6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5de7b05d9d5cdae48e013a476cb3542" id="r_ae5de7b05d9d5cdae48e013a476cb3542"><td class="memItemLeft" align="right" valign="top">igraph_error_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae5de7b05d9d5cdae48e013a476cb3542">code</a> () const</td></tr>
+<tr class="separator:ae5de7b05d9d5cdae48e013a476cb3542"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Error class for <b>igraph</b>-related errors. </p>
@@ -153,19 +149,30 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="a161c1f9c5d06910276c5e707a706fb6e" name="a161c1f9c5d06910276c5e707a706fb6e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a161c1f9c5d06910276c5e707a706fb6e">&#9670;&#160;</a></span>code</h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae5de7b05d9d5cdae48e013a476cb3542" name="ae5de7b05d9d5cdae48e013a476cb3542"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5de7b05d9d5cdae48e013a476cb3542">&#9670;&#160;</a></span>code()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">igraph_error_t raiigraph::IgraphError::code</td>
+          <td class="memname">igraph_error_t raiigraph::IgraphError::code </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Error code returned by <b>igraph</b> functions. This should be anything but <code>IGRAPH_SUCCESS</code>. </p>
+<dl class="section return"><dt>Returns</dt><dd>Error code returned by <b>igraph</b> functions. This should be anything but <code>IGRAPH_SUCCESS</code>. </dd></dl>
 
 </div>
 </div>

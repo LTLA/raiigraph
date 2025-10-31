@@ -8,7 +8,7 @@ var searchData=
   ['clear_5',['clear',['../classraiigraph_1_1Matrix.html#a087b58efefad918c4829bd4f793ac4d9',1,'raiigraph::Matrix::clear()'],['../classraiigraph_1_1Vector.html#a8646b4c35b799c9d99659163dff875aa',1,'raiigraph::Vector::clear()']]],
   ['cmake_20with_20tt_20fetchcontent_20tt_6',['CMake with &lt;tt&gt;FetchContent&lt;/tt&gt;',['../index.html#autotoc_md6',1,'']]],
   ['cmake_20with_20tt_20find_5fpackage_20tt_7',['CMake with &lt;tt&gt;find_package()&lt;/tt&gt;',['../index.html#autotoc_md7',1,'']]],
-  ['code_8',['code',['../classraiigraph_1_1IgraphError.html#a161c1f9c5d06910276c5e707a706fb6e',1,'raiigraph::IgraphError']]],
+  ['code_8',['code',['../classraiigraph_1_1IgraphError.html#ae5de7b05d9d5cdae48e013a476cb3542',1,'raiigraph::IgraphError']]],
   ['column_9',['column',['../classraiigraph_1_1Matrix.html#a329170f75bc0d7f21604f9f2aa521281',1,'raiigraph::Matrix::column(size_type c)'],['../classraiigraph_1_1Matrix.html#a6a9f617140efd3caf102e7e783c8bc9b',1,'raiigraph::Matrix::column(size_type c) const']]],
   ['column_5fcopy_10',['column_copy',['../classraiigraph_1_1Matrix.html#a02c62f4b551e7f1180ec649a33e8d29e',1,'raiigraph::Matrix']]],
   ['compatibility_11',['STL compatibility',['../index.html#autotoc_md3',1,'']]],
