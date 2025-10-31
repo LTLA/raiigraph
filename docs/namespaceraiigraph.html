@@ -134,6 +134,8 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a5f607861d72bc10f788bd9fc8d410d84" id="r_a5f607861d72bc10f788bd9fc8d410d84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f607861d72bc10f788bd9fc8d410d84">check_code</a> (igraph_error_t code)</td></tr>
 <tr class="separator:a5f607861d72bc10f788bd9fc8d410d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd1b5cbeaad4ce7c8455463450a3c3cd" id="r_abd1b5cbeaad4ce7c8455463450a3c3cd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd1b5cbeaad4ce7c8455463450a3c3cd">initialize</a> ()</td></tr>
+<tr class="separator:abd1b5cbeaad4ce7c8455463450a3c3cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilities for manipulating <b>igraph</b> data structures in C++. </p>
@@ -257,6 +259,33 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="abd1b5cbeaad4ce7c8455463450a3c3cd" name="abd1b5cbeaad4ce7c8455463450a3c3cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd1b5cbeaad4ce7c8455463450a3c3cd">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool raiigraph::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Initialize the <b>igraph</b> library by calling <code>igraph_setup()</code>. This should be called before any <b>igraph</b> functions or <b>raiigraph</b> classes are used.</p>
+<dl class="section return"><dt>Returns</dt><dd>Boolean indicating whether initialization has already been performed. If <code>true</code>, this function is a no-op. </dd></dl>
 
 </div>
 </div>
