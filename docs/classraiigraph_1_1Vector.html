@@ -245,7 +245,7 @@ class raiigraph::Vector&lt; Ns_ &gt;</div><p>Wrapper around <code>igraph_vector_
   </dd>
 </dl>
 <p>This class has ownership of the underlying <code>igraph_vector_*_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized vector. Users should not attempt to destroy the vector manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Vector.html" title="Wrapper around igraph_vector_*_t objects with RAII behavior.">Vector</a></code> goes out of scope.</p>
-<p>It is assumed that users have already called <code>igraph_setup()</code> before constructing a instance of this class. </p>
+<p>It is assumed that users have already called <code><a class="el" href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">initialize()</a></code> before constructing a instance of this class. </p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a8a876b6676811f27b5064dae0cb56125" name="a8a876b6676811f27b5064dae0cb56125"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8a876b6676811f27b5064dae0cb56125">&#9670;&#160;</a></span>const_iterator</h2>

@@ -119,13 +119,14 @@ Quick start</h1>
 <p>All wrappers provide the usual RAII behavior, greatly simplifying memory management when used in existing code.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="raiigraph_8hpp.html">raiigraph/raiigraph.hpp</a>&quot;</span></div>
 <div class="line"> </div>
-<div class="line">igraph_setup(); <span class="comment">// call this before using any igraph functions.</span></div>
+<div class="line"><a class="code hl_function" href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">raiigraph::initialize</a>(); <span class="comment">// call this before using any (rai)igraph functions.</span></div>
 <div class="line"> </div>
 <div class="line">{</div>
 <div class="line">    <a class="code hl_class" href="classraiigraph_1_1Vector.html">raiigraph::IntVector</a> thing(50);</div>
 <div class="line">    igraph_vector_int_size(thing); <span class="comment">// can directly use the object with igraph.</span></div>
 <div class="line">} <span class="comment">// thing&#39;s memory is released when &#39;thing&#39; goes out of scope.</span></div>
 <div class="ttc" id="aclassraiigraph_1_1Vector_html"><div class="ttname"><a href="classraiigraph_1_1Vector.html">raiigraph::Vector</a></div><div class="ttdoc">Wrapper around igraph_vector_*_t objects with RAII behavior.</div><div class="ttdef"><b>Definition</b> Vector.hpp:29</div></div>
+<div class="ttc" id="anamespaceraiigraph_html_abd1b5cbeaad4ce7c8455463450a3c3cd"><div class="ttname"><a href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">raiigraph::initialize</a></div><div class="ttdeci">bool initialize()</div><div class="ttdef"><b>Definition</b> initialize.hpp:20</div></div>
 <div class="ttc" id="araiigraph_8hpp_html"><div class="ttname"><a href="raiigraph_8hpp.html">raiigraph.hpp</a></div><div class="ttdoc">Utilities for manipulating igraph data structures in C++.</div></div>
 </div><!-- fragment --><p>We also follow the rule of 5 convention, so copy/move assignment works as expected:</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="classraiigraph_1_1Graph.html">raiigraph::Graph</a> outside;</div>

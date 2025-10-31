@@ -160,7 +160,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrapper around <code>igraph_t</code> objects with RAII behavior. </p>
 <p>This class has ownership of the underlying <code>igraph_t</code> object, handling both its initialization and destruction. Users should only pass instances of this class to <b>igraph</b> functions that accept an already-initialized graph. Users should not attempt to destroy the graph manually as this is done automatically when the <code><a class="el" href="classraiigraph_1_1Graph.html" title="Wrapper around igraph_t objects with RAII behavior.">Graph</a></code> goes out of scope.</p>
-<p>It is assumed that users have already called <code>igraph_setup()</code> before constructing a instance of this class. </p>
+<p>It is assumed that users have already called <code><a class="el" href="namespaceraiigraph.html#abd1b5cbeaad4ce7c8455463450a3c3cd">initialize()</a></code> before constructing a instance of this class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aea9b1256e588ab1d51c71f1552da2bbd" name="aea9b1256e588ab1d51c71f1552da2bbd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aea9b1256e588ab1d51c71f1552da2bbd">&#9670;&#160;</a></span>Graph() <span class="overload">[1/6]</span></h2>
