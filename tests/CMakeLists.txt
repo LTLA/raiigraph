@@ -20,6 +20,7 @@ add_executable(
     src/Matrix.cpp
     src/RNGScope.cpp
     src/Graph.cpp
+    src/initialize.cpp
 )
 
 target_link_libraries(
